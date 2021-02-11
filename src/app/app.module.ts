@@ -5,15 +5,18 @@ import { AppComponent } from './app.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { MainComponent } from './components/main/main.component';
 
+import { AppRoutingModule } from './app-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
     QuizComponent,
-    MainComponent
+    MainComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
