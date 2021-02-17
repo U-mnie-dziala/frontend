@@ -5,11 +5,11 @@ import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
 
 @Component({
-  selector: 'app-quiz',
-  templateUrl: './quiz.component.html',
-  styleUrls: ['./quiz.component.css']
+  selector: 'app-quiz-details',
+  templateUrl: './quizDetails.component.html',
+  styleUrls: ['./quizdetails.component.css']
 })
-export class QuizComponent implements OnInit {
+export class QuizDetailsComponent implements OnInit {
   quiz: Quiz;
 
   constructor(private startQuizService: StartQuizService) { }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
-import {QuizComponent} from '../components/quiz/quiz.component';
+import {QuizDetailsComponent} from '../components/quiz-details/quizDetails.component';
 import {Observable} from 'rxjs';
 import {Quiz} from '../interfaces/quiz';
 
