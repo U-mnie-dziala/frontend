@@ -2,7 +2,9 @@
 <div class="toolbar" role="banner">
   <a routerLink="/">
     <img alt="Angular Logo" src="favicon.ico" ng-href="#" />
-    <span>Tiara Przydziału</span>
+  </a>
+  <a routerLink="/">
+    <h1>Tiara Przydziału</h1>
   </a>
 </div>
 <!-- Content -->
@@ -12,4 +14,3 @@
 
 <div class="content" *ngIf="router.isActive('/quiz', false)">
   <app-quiz></app-quiz>
-</div>
