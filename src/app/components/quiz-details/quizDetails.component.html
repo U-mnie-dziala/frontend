@@ -12,7 +12,7 @@
 
 <div *ngIf="quiz">
   <div *ngFor = "let answer of quiz.questionList[0].answers">
-    <input type="button" value="{{ answer.text }}" (click)="saveAnswer($event)">
+    <input type="button" value="{{ answer.text }}" (click)="saveAnswer(answer)">
   </div>
 </div>
 

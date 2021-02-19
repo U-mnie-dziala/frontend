@@ -3,6 +3,7 @@ import {Quiz} from '../../interfaces/quiz';
 import {StartQuizService} from '../../services/start-quiz.service';
 import {HttpClient} from '@angular/common/http';
 import {HttpHeaders} from '@angular/common/http';
+import {Answer} from '../../interfaces/answer';
 
 @Component({
   selector: 'app-quiz-details',
@@ -23,12 +24,12 @@ export class QuizDetailsComponent implements OnInit {
     this.startQuizService.getQuiz().subscribe(quiz => this.quiz = quiz);
   }
 
-  saveAnswer(event): void {
-    this.startQuizService.storeAnswers(event.target.value);
+  saveAnswer(answer: Answer): void {
+    this.startQuizService.storeAnswers(answer);
   }
 
   sendAnswers(): void {
-    this.startQuizService.sendUserAnswers();
+    this.getResponse();
     this.startQuizService.userAnswers = [];
   }
 
