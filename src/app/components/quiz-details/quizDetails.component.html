@@ -2,3 +2,19 @@
 <div>
   Tu jest quiz!
 </div>
+<br />
+
+<div *ngIf="quiz">
+  {{quiz.questionList[0].text | json}}
+</div>
+<br />
+<br />
+
+<div *ngIf="quiz">
+  <div *ngFor = "let answer of quiz.questionList[0].answers">
+    <input type="button" value="{{ answer.text }}">
+  </div>
+</div>
+
+<br />
+<input type="button" value="Następne pytanie">

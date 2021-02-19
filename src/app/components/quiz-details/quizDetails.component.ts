@@ -10,7 +10,7 @@ import {HttpHeaders} from '@angular/common/http';
   styleUrls: ['./quizdetails.component.css']
 })
 export class QuizDetailsComponent implements OnInit {
-  quiz: Quiz;
+  quiz!: Quiz;
 
   constructor(private startQuizService: StartQuizService) { }
 
@@ -18,7 +18,11 @@ export class QuizDetailsComponent implements OnInit {
     this.getQuiz();
   }
 
-  private getQuiz() {
+  getQuiz(): void {
     this.startQuizService.getQuiz().subscribe(quiz => this.quiz = quiz);
+  }
+
+  saveAnswer(): void {
+    this.startQuizService.getUserAnswer()
   }
 }

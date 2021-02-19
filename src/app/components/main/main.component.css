@@ -1,6 +1,7 @@
-. {
+root {
   box-sizing: border-box;
 }
+
 .main {
   display: grid;
   column-gap: 20px;
