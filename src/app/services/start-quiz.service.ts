@@ -20,9 +20,12 @@ export class StartQuizService {
     return this.httpClient.get<Quiz>(this.url);
   }
 
-  public getUserAnswer(userAnswer: string): Observable<any>{
+  public storeAnswers(userAnswer: string): void {
     console.log(userAnswer);
     this.userAnswers.push(userAnswer);
+  }
+
+  public sendUserAnswers(): Observable<any>{
     console.log(this.userAnswers);
     return this.httpClient.put(this.url, this.userAnswers, this.httpOptions);
   }

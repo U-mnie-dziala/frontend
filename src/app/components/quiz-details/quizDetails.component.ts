@@ -23,6 +23,11 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   saveAnswer(event): void {
-    this.startQuizService.getUserAnswer(event.target.value);
+    this.startQuizService.storeAnswers(event.target.value);
+  }
+
+  sendAnswers(): void {
+    this.startQuizService.sendUserAnswers();
+    this.startQuizService.userAnswers = [];
   }
 }
