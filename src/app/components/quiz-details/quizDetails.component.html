@@ -12,9 +12,6 @@
 
 <div *ngIf="quiz">
   <div *ngFor = "let answer of quiz.questionList[0].answers">
-    <input type="button" value="{{ answer.text }}">
+    <input type="button" value="{{ answer.text }}" (click)="saveAnswer($event)">
   </div>
 </div>
-
-<br />
-<input type="button" value="Następne pytanie">

@@ -22,7 +22,7 @@ export class QuizDetailsComponent implements OnInit {
     this.startQuizService.getQuiz().subscribe(quiz => this.quiz = quiz);
   }
 
-  saveAnswer(): void {
-    this.startQuizService.getUserAnswer()
+  saveAnswer(event): void {
+    this.startQuizService.getUserAnswer(event.target.value);
   }
 }

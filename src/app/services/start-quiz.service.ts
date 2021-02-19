@@ -21,7 +21,9 @@ export class StartQuizService {
   }
 
   public getUserAnswer(userAnswer: string): Observable<any>{
-    return this.httpClient.put(this.url, this.userAnswers, this.httpOptions)
-      ;
+    console.log(userAnswer);
+    this.userAnswers.push(userAnswer);
+    console.log(this.userAnswers);
+    return this.httpClient.put(this.url, this.userAnswers, this.httpOptions);
   }
 }
