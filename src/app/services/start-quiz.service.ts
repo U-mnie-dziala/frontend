@@ -12,7 +12,8 @@ export class StartQuizService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };
   url = 'http://localhost:8080/quiz/start';
-  userAnswers: string[];
+  userAnswers: string[] = [];
+  test: any;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -27,6 +28,7 @@ export class StartQuizService {
 
   public sendUserAnswers(): Observable<any>{
     console.log(this.userAnswers);
-    return this.httpClient.put(this.url, this.userAnswers, this.httpOptions);
+    return this.httpClient.post(this.url, this.userAnswers, this.httpOptions);
   }
+
 }

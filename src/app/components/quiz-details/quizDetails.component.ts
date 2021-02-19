@@ -11,6 +11,7 @@ import {HttpHeaders} from '@angular/common/http';
 })
 export class QuizDetailsComponent implements OnInit {
   quiz!: Quiz;
+  response!: any;
 
   constructor(private startQuizService: StartQuizService) { }
 
@@ -30,4 +31,9 @@ export class QuizDetailsComponent implements OnInit {
     this.startQuizService.sendUserAnswers();
     this.startQuizService.userAnswers = [];
   }
+
+  getResponse(): void {
+    this.startQuizService.sendUserAnswers().subscribe(response => this.response = response);
+  }
+
 }
