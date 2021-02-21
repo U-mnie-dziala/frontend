@@ -22,7 +22,7 @@ export class StartQuizService {
   userAnswers: Answer[] = [];
   test: any;
 
-  quizDTO!: QuizDTO;
+  quizDTO: QuizDTO;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -31,12 +31,18 @@ export class StartQuizService {
   }
 
   public storeAnswers(answer: Answer): void {
-    // console.log(answer);
+    console.log(answer);
     this.userAnswers.push(answer);
+  }
+
+  public storeQuizDTO(quizDTO: QuizDTO): void {
+    console.log(quizDTO);
+    this.quizDTO = quizDTO;
   }
 
   public sendUserAnswers(): Observable<any>{
     this.quizDTO.answer = this.userAnswers;
+    console.log('Przed POST:');
     console.log(JSON.stringify(this.quizDTO)) ;
     return this.httpClient.post(
       this.url2,

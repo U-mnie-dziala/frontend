@@ -29,6 +29,7 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   sendAnswers(): void {
+    this.startQuizService.storeQuizDTO(this.quizDTO);
     this.getResponse();
     this.startQuizService.userAnswers = [];
   }
