@@ -4,6 +4,7 @@ import {QuizDetailsComponent} from '../components/quiz-details/quizDetails.compo
 import {Observable} from 'rxjs';
 import {Quiz} from '../interfaces/quiz';
 import {Answer} from '../interfaces/answer';
+import { QuizDTO } from '../interfaces/quiz-dto';
 
 @Injectable({
   providedIn: 'any'
@@ -16,14 +17,16 @@ export class StartQuizService {
     headers: new HttpHeaders({ 'Content-Type': 'text'})
   };
   url = 'http://localhost:8080/quiz/start';
-  url2 = 'http://localhost:8080/quiz/form';
+  url2 = 'http://localhost:8080/quiz/bezsesji';
   userAnswers: Answer[] = [];
   test: any;
 
+  quizDTO: QuizDTO;
+
   constructor(private httpClient: HttpClient) { }
 
-  public getQuiz(): Observable<Quiz>{
-    return this.httpClient.get<Quiz>(this.url);
+  public getQuiz(): Observable<QuizDTO>{
+    return this.httpClient.get<QuizDTO>(this.url);
   }
 
   public storeAnswers(answer: Answer): void {
@@ -32,8 +35,12 @@ export class StartQuizService {
   }
 
   public sendUserAnswers(): Observable<any>{
-    console.log(this.userAnswers.toString().substring(1, this.userAnswers.toString().length - 1)) ;
-    return this.httpClient.post(this.url2, this.userAnswers.toString().substring(1, this.userAnswers.toString().length - 1), this.httpOptions);
+    console.log(this.quizDTO) ;
+    return this.httpClient.post(
+      this.url2,
+      this.quizDTO,
+      this.httpOptions2
+    );
   }
 
 }
