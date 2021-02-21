@@ -11,7 +11,8 @@ import { QuizDTO } from '../interfaces/quiz-dto';
 })
 export class StartQuizService {
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'} ),
+    mode: 'no-cors'
   };
   httpOptions2 = {
     headers: new HttpHeaders({ 'Content-Type': 'text'})
@@ -21,7 +22,7 @@ export class StartQuizService {
   userAnswers: Answer[] = [];
   test: any;
 
-  quizDTO: QuizDTO;
+  quizDTO!: QuizDTO;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -35,11 +36,12 @@ export class StartQuizService {
   }
 
   public sendUserAnswers(): Observable<any>{
-    console.log(this.quizDTO) ;
+    this.quizDTO.answer = this.userAnswers;
+    console.log(JSON.stringify(this.quizDTO)) ;
     return this.httpClient.post(
       this.url2,
       this.quizDTO,
-      this.httpOptions2
+      this.httpOptions
     );
   }
 
