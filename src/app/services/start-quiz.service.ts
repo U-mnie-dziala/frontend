@@ -15,7 +15,8 @@ export class StartQuizService {
     mode: 'no-cors'
   };
   httpOptions2 = {
-    headers: new HttpHeaders({ 'Content-Type': 'text'})
+    headers: new HttpHeaders({ 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'}),
+    mode: 'no-cors'
   };
   url = 'http://localhost:8080/quiz/start';
   url2 = 'http://localhost:8080/quiz/bezsesji';
@@ -47,7 +48,7 @@ export class StartQuizService {
     return this.httpClient.post(
       this.url2,
       this.quizDTO,
-      this.httpOptions
+      this.httpOptions2
     );
   }
 
