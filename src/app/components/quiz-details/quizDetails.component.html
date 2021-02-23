@@ -4,14 +4,14 @@
 </div>
 <br />
 
-<div *ngIf="quizDTO">
-  {{quizDTO.quiz.questionList[0].text | json}}
+<div *ngIf="quiz">
+  {{quiz.questionList[0].text | json}}
 </div>
 <br />
 <br />
 
-<div *ngIf="quizDTO">
-  <div *ngFor = "let answer of quizDTO.quiz.questionList[0].answers">
+<div *ngIf="quiz">
+  <div *ngFor = "let answer of quiz.questionList[0].answers">
     <input type="button" value="{{ answer.text }}" (click)="saveAnswer(answer)">
   </div>
 </div>
@@ -20,4 +20,4 @@
 
 <br/> <br>
 
-{{quizDTO |json}}
+{{quiz |json}}

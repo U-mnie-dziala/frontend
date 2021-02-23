@@ -12,7 +12,7 @@ import {QuizDTO} from '../../interfaces/quiz-dto';
   styleUrls: ['./quizdetails.component.css']
 })
 export class QuizDetailsComponent implements OnInit {
-  quizDTO: QuizDTO;
+  quiz: Quiz;
 
   constructor(private startQuizService: StartQuizService) { }
 
@@ -21,7 +21,7 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   getQuiz(): void {
-    this.startQuizService.getQuiz().subscribe(quizDTO => this.quizDTO = quizDTO);
+    this.startQuizService.getQuiz().subscribe(quizDTO => this.quiz = quizDTO);
   }
 
   saveAnswer(answer: Answer): void {
@@ -29,13 +29,13 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   sendAnswers(): void {
-    this.startQuizService.storeQuizDTO(this.quizDTO);
+    this.startQuizService.quiz = this.quiz;
     this.getResponse();
     this.startQuizService.userAnswers = [];
   }
 
   getResponse(): void {
-    this.startQuizService.sendUserAnswers().subscribe(quizDTO => this.quizDTO = quizDTO);
+    this.startQuizService.sendUserAnswers().subscribe(quizDTO => this.quiz = quizDTO);
   }
 
 }
