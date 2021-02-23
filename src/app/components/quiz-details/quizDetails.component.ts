@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Quiz} from '../../interfaces/quiz';
 import {StartQuizService} from '../../services/start-quiz.service';
-import {HttpClient} from '@angular/common/http';
-import {HttpHeaders} from '@angular/common/http';
 import {Answer} from '../../interfaces/answer';
-import {QuizDTO} from '../../interfaces/quiz-dto';
 
 @Component({
   selector: 'app-quiz-details',
@@ -21,7 +18,7 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   getQuiz(): void {
-    this.startQuizService.getQuiz().subscribe(quizDTO => this.quiz = quizDTO);
+    this.startQuizService.getQuiz().subscribe(quiz => this.quiz = quiz);
   }
 
   saveAnswer(answer: Answer): void {
@@ -30,12 +27,11 @@ export class QuizDetailsComponent implements OnInit {
 
   sendAnswers(): void {
     this.startQuizService.quiz = this.quiz;
-    this.getResponse();
+    this.postQuiz();
     this.startQuizService.userAnswers = [];
   }
 
-  getResponse(): void {
-    this.startQuizService.sendUserAnswers().subscribe(quizDTO => this.quiz = quizDTO);
+  postQuiz(): void {
+    this.startQuizService.sendUserAnswers().subscribe(quiz => this.quiz = quiz);
   }
-
 }
