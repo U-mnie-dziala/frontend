@@ -13,6 +13,10 @@ export class StartQuizService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'} ),
   };
+  httpOptions2 = {
+    headers: new HttpHeaders({ 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'}),
+    mode: 'no-cors'
+  };
   // httpOptions2 = {
   //   headers: new HttpHeaders()}
   url = 'http://localhost:8080/quiz/start';
