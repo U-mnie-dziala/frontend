@@ -17,11 +17,7 @@ export class StartQuizService {
   // };
   urlStart = 'http://localhost:8080/quiz/start';
   urlForm = 'http://localhost:8080/quiz/form';
-  userAnswers: Answer[] = [];
-  userAnswersIds: number[] = [];
   test: any;
-
-  quiz: Quiz;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -29,21 +25,10 @@ export class StartQuizService {
     return this.httpClient.get<Quiz>(this.urlStart);
   }
 
-  public storeAnswers(answer: Answer): void {
-    console.log('Stored answer: ' + answer.text);
-    this.userAnswers.push(answer);
-  }
-
-  public sendUserAnswers(): Observable<any>{
-    this.userAnswers.forEach(item => this.userAnswersIds.push(item.id));
-    this.quiz.answerIds = this.userAnswersIds;
-
-    console.log('Sending with POST:');
-    console.log(this.userAnswers);
-
+  public sendUserAnswers(quiz: Quiz): Observable<any>{
     return this.httpClient.post(
       this.urlForm,
-      this.quiz,
+      quiz,
       this.httpOptions
     );
   }

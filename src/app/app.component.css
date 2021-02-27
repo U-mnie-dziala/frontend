@@ -1,16 +1,14 @@
-root {
-  box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700");
+
 .toolbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 10%;
-  min-height: 4rem;
+  height: 4rem;
   display: flex;
   align-items: center;
-  background-color: #1976d2;
+  background-color: var(--deepblue);
   color: white;
   font-weight: 600;
 }
@@ -39,52 +37,57 @@ root {
 a,
 a:visited,
 a:hover {
-  color: #1976d2;
+  color: white;
   text-decoration: none;
 }
 
-a:hover {
-  color: #125699;
+main {
+  font-family: Lato, sans-serif;
+  min-height: auto;
+
+  display:flex;
+  flex-direction:column;
 }
 
 footer {
-  margin-top: 8px;
+  height: 100%;
+  margin: auto;
+  position: relative;
+  bottom: 0;
   display: flex;
-  align-items: center;
-  line-height: 20px;
+  flex-direction: column;
+  width: 100%;
+  font-weight: bold;
 }
 
-footer a {
-  display: flex;
-  align-items: center;
+footer div {
+  background: var(--deepblue);
+  width: 100%;
+  padding-bottom: 1%;
+  color: #fff;
+  text-align:center;
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 767px) {
-
-  .card-container > *:not(.circle-link) ,
-  .terminal {
-    width: 100%;
-  }
-
-  .card:not(.highlight-card) {
-    height: 16px;
-    margin: 8px 0;
-  }
-
-  .card.highlight-card span {
-    margin-left: 72px;
-  }
-
-  svg#rocket-smoke {
-    right: 120px;
-    transform: rotate(-5deg);
-  }
+svg {
+  overflow: visible;
 }
 
-@media screen and (max-width: 575px) {
-  svg#rocket-smoke {
-    display: none;
-    visibility: hidden;
-  }
+.wave {
+  animation: wave 10s linear;
+  animation-iteration-count:infinite;
+  fill: var(--deepblue);
+}
+
+#wave2 {
+  animation-duration:5s;
+  animation-direction: reverse;
+  opacity: .6
+}
+#wave3 {
+  animation-duration: 7s;
+  opacity:.3;
+}
+
+@keyframes wave {
+  to {transform: translateX(-100%);}
 }

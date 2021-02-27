@@ -1,23 +1,15 @@
-
-<div>
-  Tu jest quiz!
-</div>
-<br />
-
-<div *ngIf="quiz">
-  {{quiz.questionList[0].text | json}}
-</div>
-<br />
-<br />
-
-<div *ngIf="quiz">
-  <div *ngFor = "let answer of quiz.questionList[0].answers">
-    <input type="button" value="{{ answer.text }}" (click)="saveAnswer(answer)">
+<div class="content">
+  <div class="question" *ngIf="quiz">
+    {{quiz.questionList[0].text | json}}
   </div>
-</div>
 
-<input type="button" value="Nastepne pytanie" (click)="sendAnswers()">
+  <div  class="answers" *ngIf="quiz">
+    <div class="answer" *ngFor = "let answer of quiz.questionList[0].answers">
+      <input class="answerButton" type="button" value="{{ answer.text }}" (click)="saveOneAnswer(answer)">
+    </div>
+  </div>
+</div> <!--content-->
 
-<br/> <br>
+<br/> <br/>
 
 {{quiz | json}}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostBinding, OnInit} from '@angular/core';
 import {Quiz} from '../../interfaces/quiz';
 import {StartQuizService} from '../../services/start-quiz.service';
 import {Answer} from '../../interfaces/answer';
@@ -6,10 +6,14 @@ import {Answer} from '../../interfaces/answer';
 @Component({
   selector: 'app-quiz-details',
   templateUrl: './quizDetails.component.html',
-  styleUrls: ['./quizdetails.component.css']
+  styleUrls: ['./quizDetails.component.css']
 })
 export class QuizDetailsComponent implements OnInit {
   quiz: Quiz;
+  userAnswers: Answer[] = [];
+  userAnswersIds: number[] = [];
+
+  maxButtonWidth: number;
 
   constructor(private startQuizService: StartQuizService) { }
 
@@ -17,21 +21,32 @@ export class QuizDetailsComponent implements OnInit {
     this.getQuiz();
   }
 
+  // -buttons- //
+  saveOneAnswer(answer: Answer): void {
+    this.userAnswers.push(answer);
+    this.sendAnswers();
+  }
+  // --- //
+
+  sendAnswers(): void {
+    this.getUserAnswersIds();
+    this.postQuiz();
+    this.userAnswersIds = [];
+    this.userAnswers = [];
+  }
+
+  getUserAnswersIds(): void {
+    this.userAnswers.forEach(item => this.userAnswersIds.push(item.id));
+    this.quiz.answerIds = this.userAnswersIds;
+  }
+
+  // -requests- //
   getQuiz(): void {
     this.startQuizService.getQuiz().subscribe(quiz => this.quiz = quiz);
   }
 
-  saveAnswer(answer: Answer): void {
-    this.startQuizService.storeAnswers(answer);
-  }
-
-  sendAnswers(): void {
-    this.startQuizService.quiz = this.quiz;
-    this.postQuiz();
-    this.startQuizService.userAnswers = [];
-  }
-
   postQuiz(): void {
-    this.startQuizService.sendUserAnswers().subscribe(quiz => this.quiz = quiz);
+    this.startQuizService.sendUserAnswers(this.quiz).subscribe(quiz => this.quiz = quiz);
   }
+  // --- //
 }

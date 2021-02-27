@@ -1,3 +1,4 @@
+
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <a routerLink="/">
@@ -7,11 +8,37 @@
     <h1>Tiara Przydziału</h1>
   </a>
 </div>
-<!-- Content -->
-<div class="content" *ngIf="router.isActive('/', true)">
-  <app-main></app-main>
-</div>
 
-<div class="content" *ngIf="router.isActive('/quiz', false)">
-  <app-quiz-details></app-quiz-details>
-</div>
+<!-- Content -->
+<main>
+  <div class="content" *ngIf="router.isActive('/', true)">
+    <app-main></app-main>
+  </div>
+  <div class="content" *ngIf="router.isActive('/quiz', false)">
+    <app-quiz-details></app-quiz-details>
+  </div>
+</main>
+
+
+<!-- Footer -->
+<footer>
+  <svg viewBox="0 0 120 20">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur" />
+        <feColorMatrix in="blur" values="
+           1 0 0 0 0
+           0 1 0 0 0
+           0 0 1 0 0
+           0 0 0 13 -9" result="goo" />
+      </filter>
+      <path id="wave" d="M0 10C30 10 30 15 60 15C90 15 90 10 120 10C150 10 150 15 180 15C210 15 210 10 240 10C270 10 270 15 300 15C330 15 330 10 360 10v13h-360z" />
+    </defs>
+    <use id="wave3" class="wave" xlink:href="#wave" x="-10" y="-2" ></use>
+    <use id="wave2" class="wave" xlink:href="#wave" x="-10" y="0" ></use>
+    <use id="wave1" class="wave" xlink:href="#wave" x="-40" y="2" ></use>
+  </svg>
+  <div>
+    <a href="#"> &copy;U mnie działa </a>
+  </div>
+</footer>
