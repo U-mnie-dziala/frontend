@@ -15,8 +15,8 @@ export class StartQuizService {
   //   headers: new HttpHeaders({ 'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'}),
   //   mode: 'no-cors'
   // };
-  urlStart = 'http://localhost:8080/quiz/start';
-  urlForm = 'http://localhost:8080/quiz/form';
+  urlStart = 'https://programowaniezespolowe-app.herokuapp.com/quiz/start';
+  urlForm = 'https://programowaniezespolowe-app.herokuapp.com/quiz/form';
   test: any;
 
   constructor(private httpClient: HttpClient) { }
