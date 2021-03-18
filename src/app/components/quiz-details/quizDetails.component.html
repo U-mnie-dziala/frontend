@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content" *ngIf="results.length === 0">
   <div class="question" *ngIf="quiz">
     {{quiz.questionList[0].text | json}}
   </div>
@@ -8,7 +8,15 @@
       <input class="answerButton" type="button" value="{{ answer.text }}" (click)="saveOneAnswer(answer)">
     </div>
   </div>
-</div> <!--content-->
+</div>
+<div class="content" *ngIf="results.length > 0">
+  <div  class="results" *ngIf="quiz">
+    <p> Twoje grupy elementarne: </p>
+    <p class="result" *ngFor = "let result of results">
+      {{result}}
+    </p>
+  </div>
+</div>
 
 <br/> <br/>
 

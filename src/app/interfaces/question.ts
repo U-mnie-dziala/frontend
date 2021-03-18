@@ -5,4 +5,7 @@ export interface Question {
   groupCode: string;
   text: string;
   answers: Answer[];
+  hasSimilarQuestions: boolean;
+  similarQuestionIds: number[];
+  multipleChoice: boolean;
 }

@@ -12,8 +12,7 @@ export class QuizDetailsComponent implements OnInit {
   quiz: Quiz;
   userAnswers: Answer[] = [];
   userAnswersIds: number[] = [];
-
-  maxButtonWidth: number;
+  results: [] = [];
 
   constructor(private startQuizService: StartQuizService) { }
 
@@ -47,6 +46,13 @@ export class QuizDetailsComponent implements OnInit {
 
   postQuiz(): void {
     this.startQuizService.sendUserAnswers(this.quiz).subscribe(quiz => this.quiz = quiz);
+    if (this.quiz.questionList.length === 0) {
+      this.postResults();
+    }
+  }
+
+  postResults(): void {
+    this.startQuizService.getResults(this.quiz).subscribe(results => this.results = results);
   }
   // --- //
 }

@@ -1,8 +1,8 @@
-import {Answer} from './answer';
 import {Question} from './question';
+import {QuestionHistory} from './question-history';
 
 export interface Quiz {
-  // questionsHistory: Map<Answer, Question>;
+  questionsHistory: QuestionHistory[];
   groupCodes: string[];
   questionList: Question[];
   answerIds: number[];
