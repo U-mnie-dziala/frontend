@@ -2,6 +2,7 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 import {Quiz} from '../../interfaces/quiz';
 import {StartQuizService} from '../../services/start-quiz.service';
 import {Answer} from '../../interfaces/answer';
+import {log} from 'util';
 
 @Component({
   selector: 'app-quiz-details',
@@ -10,6 +11,7 @@ import {Answer} from '../../interfaces/answer';
 })
 export class QuizDetailsComponent implements OnInit {
   quiz: Quiz;
+  checkBoxed: Answer[] = [];
   userAnswers: Answer[] = [];
   userAnswersIds: number[] = [];
   results: [] = [];
@@ -24,6 +26,33 @@ export class QuizDetailsComponent implements OnInit {
   saveOneAnswer(answer: Answer): void {
     this.userAnswers.push(answer);
     this.sendAnswers();
+  }
+
+  editCheckboxed(event, answer: Answer): void {
+    if (event.target.checked) {
+      this.checkBoxed.push(answer);
+    }
+    else {
+      for (let i = 0; i < this.checkBoxed.length; i++) {
+        if (this.checkBoxed[i].id === answer.id){
+          this.checkBoxed.splice(i, 1);
+          break;
+        }
+      }
+    }
+  }
+
+  saveManyAnswers(): void {
+    if (this.checkBoxed.length === 0){
+      this.quiz.questionList.splice(0, 1);
+      if (this.quiz.questionList.length === 0){
+        this.postQuiz();
+      }
+    }
+    else {
+      this.checkBoxed.forEach(archivedAnswer => this.userAnswers.push(archivedAnswer));
+      this.sendAnswers();
+    }
   }
   // --- //
 

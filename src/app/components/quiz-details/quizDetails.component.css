@@ -25,6 +25,44 @@
   align-items: center;
 }
 
+.answerCheckbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.answerCheckbox label {
+  min-width: 30%;
+  background-color: cornflowerblue;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  text-decoration: none;
+  margin: 1%;
+  padding: 1%;
+  cursor: pointer;
+}
+
+.answerCheckbox label:hover {
+  box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24),0 8px 8px 0 rgba(0,0,0,0.19);
+  background-color: #446ce3;
+}
+
+.answerCheckbox label span {
+  text-align:center;
+  padding:3px 0px;
+  display:block;
+}
+
+.answerCheckbox label input {
+  position:absolute;
+  visibility: hidden;
+}
+
+.answerCheckbox input:checked + span{
+  background: black;
+}
+
 .answer input {
   min-width: 30%;
   background-color: cornflowerblue;

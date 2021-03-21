@@ -3,8 +3,16 @@
     {{quiz.questionList[0].text | json}}
   </div>
 
-  <div  class="answers" *ngIf="quiz">
-    <div class="answer" *ngFor = "let answer of quiz.questionList[0].answers">
+  <div  class="answers" *ngIf="quiz && quiz.questionList[0].multipleChoice">
+    <div class="answerCheckbox"  *ngFor = "let answer of quiz.questionList[0].answers">
+      <label>
+        <input type="checkbox" (change)="editCheckboxed($event, answer)"> <span> {{ answer.text }} </span>
+      </label>
+    </div>
+    <input class="answerButton" type="button" value="Dalej"  (click)="saveManyAnswers()">
+  </div>
+  <div  class="answers" *ngIf="quiz && !quiz.questionList[0].multipleChoice">
+    <div class="answer"  *ngFor = "let answer of quiz.questionList[0].answers">
       <input class="answerButton" type="button" value="{{ answer.text }}" (click)="saveOneAnswer(answer)">
     </div>
   </div>
