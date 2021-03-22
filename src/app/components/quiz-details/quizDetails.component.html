@@ -9,7 +9,7 @@
         <input type="checkbox" (change)="editCheckboxed($event, answer)"> <span> {{ answer.text }} </span>
       </label>
     </div>
-    <input class="answerButton" type="button" value="Dalej"  (click)="saveManyAnswers()">
+    <input id="nextQuestion" type="button" value="Następne pytanie &raquo;"  (click)="saveManyAnswers()">
   </div>
   <div  class="answers" *ngIf="quiz && !quiz.questionList[0].multipleChoice">
     <div class="answer"  *ngFor = "let answer of quiz.questionList[0].answers">
@@ -18,7 +18,7 @@
   </div>
 </div>
 <div class="content" *ngIf="results.length > 0">
-  <div  class="results" *ngIf="quiz">
+  <div class="results">
     <p> Twoje grupy elementarne: </p>
     <p class="result" *ngFor = "let result of results">
       {{result}}

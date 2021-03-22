@@ -1,18 +1,19 @@
 .content {
   display: flex;
-
+  min-width: 80%;
   flex-direction: column;
   align-items: center;
 }
 
 .question {
   margin: 2%;
-  padding: 1%;
+  padding: 2%;
   text-align: center;
   min-width: 80%;
   color: white;
   background: cornflowerblue;
   box-shadow: 10px 10px rgba(0,0,0,.15);
+  clip-path: inset(0 round 1em);
 }
 
 .answers {
@@ -25,6 +26,24 @@
   align-items: center;
 }
 
+.answer input {
+  clip-path: inset(0 round 2em);
+  min-width: 30%;
+  background-color: cornflowerblue;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  text-decoration: none;
+  margin: 1%;
+  padding: 1%;
+  cursor: pointer;
+}
+
+.answer input:hover {
+  box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24),0 8px 8px 0 rgba(0,0,0,0.19);
+  background-color: #446ce3;
+}
+
 .answerCheckbox {
   display: flex;
   justify-content: center;
@@ -32,6 +51,7 @@
 }
 
 .answerCheckbox label {
+  clip-path: inset(0 round 2em);
   min-width: 30%;
   background-color: cornflowerblue;
   border: none;
@@ -50,7 +70,8 @@
 
 .answerCheckbox label span {
   text-align:center;
-  padding:3px 0px;
+  box-sizing: content-box;
+  padding:3px 0;
   display:block;
 }
 
@@ -60,11 +81,14 @@
 }
 
 .answerCheckbox input:checked + span{
-  background: black;
+  color: white;
+  background: rgb(255,255,0);
+  background: radial-gradient(circle, rgba(255,255,0,0.65) 0%, rgba(254,255,0,0) 100%);
 }
 
-.answer input {
-  min-width: 30%;
+#nextQuestion {
+  float: right;
+  clip-path: inset(0 round 2em);
   background-color: cornflowerblue;
   border: none;
   color: white;
@@ -75,11 +99,10 @@
   cursor: pointer;
 }
 
-.answer input:hover {
+#nextQuestion:hover {
   box-shadow: 0 6px 8px 0 rgba(0,0,0,0.24),0 8px 8px 0 rgba(0,0,0,0.19);
   background-color: #446ce3;
 }
-
 a,
 a:visited,
 a:hover {

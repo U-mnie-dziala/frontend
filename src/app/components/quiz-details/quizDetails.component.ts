@@ -61,6 +61,7 @@ export class QuizDetailsComponent implements OnInit {
     this.postQuiz();
     this.userAnswersIds = [];
     this.userAnswers = [];
+    this.checkBoxed = [];
   }
 
   getUserAnswersIds(): void {
