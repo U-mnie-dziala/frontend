@@ -3,6 +3,7 @@ import {Quiz} from '../../interfaces/quiz';
 import {StartQuizService} from '../../services/start-quiz.service';
 import {Answer} from '../../interfaces/answer';
 import {log} from 'util';
+import {ElementaryGroup} from '../../interfaces/elementary-group';
 
 @Component({
   selector: 'app-quiz-details',
@@ -14,7 +15,7 @@ export class QuizDetailsComponent implements OnInit {
   checkBoxed: Answer[] = [];
   userAnswers: Answer[] = [];
   userAnswersIds: number[] = [];
-  results: [] = [];
+  results: ElementaryGroup[] = [];
 
   constructor(private startQuizService: StartQuizService) { }
 
@@ -45,9 +46,6 @@ export class QuizDetailsComponent implements OnInit {
   saveManyAnswers(): void {
     if (this.checkBoxed.length === 0){
       this.quiz.questionList.splice(0, 1);
-      if (this.quiz.questionList.length === 0){
-        this.postQuiz();
-      }
     }
     else {
       this.checkBoxed.forEach(archivedAnswer => this.userAnswers.push(archivedAnswer));
@@ -58,6 +56,7 @@ export class QuizDetailsComponent implements OnInit {
 
   sendAnswers(): void {
     this.getUserAnswersIds();
+    console.log('Sendig post...');
     this.postQuiz();
     this.userAnswersIds = [];
     this.userAnswers = [];
@@ -71,18 +70,30 @@ export class QuizDetailsComponent implements OnInit {
 
   // -requests- //
   getQuiz(): void {
-    this.startQuizService.getQuiz().subscribe(quiz => this.quiz = quiz);
+    this.startQuizService.getQuiz().subscribe(quiz => this.quiz = quiz,
+      err => console.error('Observer got an error: ' + err),
+      () => console.log('Get: ' + JSON.stringify(this.quiz))
+    );
   }
 
   postQuiz(): void {
-    this.startQuizService.sendUserAnswers(this.quiz).subscribe(quiz => this.quiz = quiz);
-    if (this.quiz.questionList.length === 0) {
-      this.postResults();
-    }
+    this.startQuizService.sendUserAnswers(this.quiz).subscribe(quiz => this.quiz = quiz,
+      err => console.error('Observer got an error: ' + err),
+      () => {
+        console.log('Post:' + JSON.stringify(this.quiz));
+        if (this.quiz.questionList.length === 0) {
+          console.log('QuestionListEmpty');
+          this.postResults();
+        }
+      }
+    );
   }
 
   postResults(): void {
-    this.startQuizService.getResults(this.quiz).subscribe(results => this.results = results);
+    this.startQuizService.getResults(this.quiz).subscribe(results => this.results = results,
+      err => console.error('Observer got an error: ' + err),
+      () => console.log('Response: ' + JSON.stringify(this.results))
+    );
   }
   // --- //
 }
