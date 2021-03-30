@@ -2,7 +2,6 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 import {Quiz} from '../../interfaces/quiz';
 import {StartQuizService} from '../../services/start-quiz.service';
 import {Answer} from '../../interfaces/answer';
-import {log} from 'util';
 import {ElementaryGroup} from '../../interfaces/elementary-group';
 
 @Component({
@@ -11,6 +10,7 @@ import {ElementaryGroup} from '../../interfaces/elementary-group';
   styleUrls: ['./quizDetails.component.css']
 })
 export class QuizDetailsComponent implements OnInit {
+  resultsReady = -1;
   quiz: Quiz;
   checkBoxed: Answer[] = [];
   userAnswers: Answer[] = [];
@@ -20,7 +20,6 @@ export class QuizDetailsComponent implements OnInit {
   constructor(private startQuizService: StartQuizService) { }
 
   ngOnInit(): void {
-    this.getQuiz();
   }
 
   // -buttons- //
@@ -44,13 +43,11 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   saveManyAnswers(): void {
-    if (this.checkBoxed.length === 0){
-      this.quiz.questionList.splice(0, 1);
-    }
-    else {
+    console.log('Save many');
+    if (this.checkBoxed.length !== 0) {
       this.checkBoxed.forEach(archivedAnswer => this.userAnswers.push(archivedAnswer));
-      this.sendAnswers();
     }
+    this.sendAnswers();
   }
   // --- //
 
@@ -77,13 +74,18 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   postQuiz(): void {
+    console.log('Post:\n' + JSON.stringify(this.quiz));
     this.startQuizService.sendUserAnswers(this.quiz).subscribe(quiz => this.quiz = quiz,
       err => console.error('Observer got an error: ' + err),
       () => {
-        console.log('Post:' + JSON.stringify(this.quiz));
+        console.log('Resp:\n' + JSON.stringify(this.quiz));
         if (this.quiz.questionList.length === 0) {
           console.log('QuestionListEmpty');
           this.postResults();
+          this.resultsReady = 1;
+          if (this.quiz.questionList.length === 0) {
+            this.resultsReady = 0;
+          }
         }
       }
     );

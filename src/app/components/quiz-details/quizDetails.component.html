@@ -1,31 +1,49 @@
-<div class="content" *ngIf="results.length === 0">
-  <div class="question" *ngIf="quiz && quiz.questionList.length > 0">
-    {{quiz.questionList[0].text | json}}
-  </div>
-
-  <div  class="answers" *ngIf="quiz && quiz.questionList.length > 0 && quiz.questionList[0].multipleChoice">
-    <div class="answerCheckbox"  *ngFor = "let answer of quiz.questionList[0].answers">
-      <label>
-        <input type="checkbox" (change)="editCheckboxed($event, answer)"> <span> {{ answer.text }} </span>
-      </label>
+<div class="content" *ngIf="quiz">
+  <div id="quiz" *ngIf="quiz.questionList.length > 0">
+    <div class="question" >
+      <span> {{quiz.questionList[0].text}} </span> <br />
+      <span *ngIf="quiz.questionList[0].multipleChoice"> (Możesz wybrać dowolną liczbę odpowiedzi lub brak odpowiedzi) </span>
     </div>
-    <input id="nextQuestion" type="button" value="Następne pytanie &raquo;"  (click)="saveManyAnswers()">
-  </div>
-  <div  class="answers" *ngIf="quiz && quiz.questionList.length > 0 && !quiz.questionList[0].multipleChoice">
-    <div class="answer"  *ngFor = "let answer of quiz.questionList[0].answers">
-      <input class="answerButton" type="button" value="{{ answer.text }}" (click)="saveOneAnswer(answer)">
+    <div  class="answers" *ngIf="quiz.questionList[0].multipleChoice">
+      <div class="answerCheckbox"  *ngFor = "let answer of quiz.questionList[0].answers">
+        <label>
+          <input type="checkbox" (change)="editCheckboxed($event, answer)"> <span> {{ answer.text }} </span>
+        </label>
+      </div>
+      <input id="nextQuestion" type="button" value="Następne pytanie &raquo;"  (click)="saveManyAnswers()">
+    </div>
+    <div  class="answers" *ngIf="!quiz.questionList[0].multipleChoice">
+      <div class="answer"  *ngFor = "let answer of quiz.questionList[0].answers">
+        <input class="answerButton" type="button" value="{{ answer.text }}" (click)="saveOneAnswer(answer)">
+      </div>
     </div>
   </div>
-</div>
-<div class="content" *ngIf="results.length > 0">
-  <div class="results">
+  <div class="results" *ngIf="resultsReady == 1">
     <p> Twoje grupy elementarne: </p>
-    <p class="result" *ngFor = "let result of results">
-      {{result.name}}
-    </p>
+    <div class="result" *ngFor = "let result of results">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          {{result.name}}
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <ul>
+            <li>
+              {{result.code}}
+            </li>
+            <li>
+              {{result.synthesis}}
+            </li>
+            <li>
+              {{result.tasks}}
+            </li>
+          </ul>
+        </ng-template>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <div class="results" *ngIf="resultsReady == 0">
+    <p> Nie znaleziono żadnych dopasowanych grup elementarnych. Możesz rozważyć zwiększenie kwalifikacji. </p>
   </div>
 </div>
 
 <br/> <br/>
-
-{{quiz | json}}

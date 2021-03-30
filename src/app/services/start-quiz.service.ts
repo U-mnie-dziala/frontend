@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Quiz} from '../interfaces/quiz';
+import {QuizDetailsComponent} from '../components/quiz-details/quizDetails.component';
 import {Answer} from '../interfaces/answer';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Injectable({
   providedIn: 'any'
