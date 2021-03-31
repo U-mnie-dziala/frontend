@@ -1,14 +1,20 @@
 <div class="content">
-  <h2>Wyszukiwarka zawodów</h2>
+  <h2>Wyszukiwarka grup zawodowych</h2>
   <div class="md-form">
     <form class="form-inline md-form mr-auto mb-4">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"  [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" >
-      <button class="my-0 waves-light" type="submit" (click)="getProffesions()">Search</button>
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"  [(ngModel)]="searchGroupText" [ngModelOptions]="{standalone: true}" >
+      <button class="my-0 waves-light" type="submit" (click)="getGroups()"> Search </button>
     </form>
   </div>
-  <div  class="results" *ngIf="!allProffesions">
-    <div class="result" *ngFor="let proffesion of allProffesions">
-      <input class="answerButton" type="button" value="{{proffesion}}">
+  <div  class="results" *ngIf="groups">
+    <div class="result" *ngFor="let group of groups">
+      {{group.name}}
     </div>
+  </div>
+  <div  class="results" *ngIf="!groups">
+    Oczekiwanie...
+  </div>
+  <div  class="results" *ngIf="groups && groups.length === 0">
+    Lista grup pusta.
   </div>
 </div>

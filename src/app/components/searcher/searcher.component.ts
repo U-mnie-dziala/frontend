@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from '../../services/search.service';
+import {ElementaryGroupForSearch} from '../../interfaces/elementary-group-for-search';
 
 @Component({
   selector: 'app-searcher',
@@ -8,19 +9,24 @@ import {SearchService} from '../../services/search.service';
 })
 export class SearcherComponent implements OnInit {
   allProffesions: string[];
-  searchText: string;
+  searchProffesionText: string;
+  searchGroupText = '';
+  groups: ElementaryGroupForSearch[] = [];
 
   constructor(private searchService: SearchService) {}
 
   ngOnInit(): void {
-    this.getAllProffesions();
+    this.getGroups();
   }
 
-  getAllProffesions(): void{
-    this.searchService.getAllProffesions().subscribe(element => this.allProffesions = element);
-  }
-
-  getProffesions(): void {
-    this.searchService.postProffesions(this.searchText).subscribe(element => this.allProffesions = element);
+  getGroups(): void {
+    this.groups = null;
+    if (this.searchGroupText){
+      this.searchService.postGroup(this.searchGroupText).subscribe(groups => this.groups = groups);
+    }
+    else {
+      this.searchService.postGroup(' ').subscribe(groups => this.groups = groups);
+    }
+    console.log('Output: ' + this.groups);
   }
 }

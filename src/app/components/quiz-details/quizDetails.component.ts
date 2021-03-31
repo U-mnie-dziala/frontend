@@ -20,6 +20,7 @@ export class QuizDetailsComponent implements OnInit {
   constructor(private startQuizService: StartQuizService) { }
 
   ngOnInit(): void {
+    this.getQuiz();
   }
 
   // -buttons- //

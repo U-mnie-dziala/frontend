@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import { AuthInterceptor } from './helpers/auth.interceptors';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfessionSearcherComponent } from './components/profession-searcher/profession-searcher.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     RegisterComponent,
     BoardUserComponent,
     ProfileComponent,
+    ProfessionSearcherComponent,
   ],
   imports: [
     BrowserModule,

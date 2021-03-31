@@ -8,11 +8,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
+import {ProfessionSearcherComponent} from './components/profession-searcher/profession-searcher.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'quiz', component: QuizDetailsComponent },
-  { path: 'search', component: SearcherComponent },
+  { path: 'wyszukaj/grupy', component: SearcherComponent },
+  { path: 'wyszukaj/zawody', component: ProfessionSearcherComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

@@ -1,0 +1,16 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+.letter {
+  display: inline-block;
+  background: white;
+  margin: 0 .5% 1% .5%;
+  padding: 0 .35em 0 .35em;
+}
+
+.letter:hover {
+  background: yellow;
+  cursor: pointer;
+}

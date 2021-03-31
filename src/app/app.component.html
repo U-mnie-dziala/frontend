@@ -9,8 +9,11 @@
   </a>
   <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
   <div id="placeholder"> </div>
-  <a class="search" routerLink="/search">
-    <h4>Wyszukiwarka zawodów</h4>
+  <a class="search" routerLink="/wyszukaj/grupy">
+    <h5>Wyszukiwarka grup zawodowych</h5>
+  </a>
+  <a class="search" routerLink="/wyszukaj/zawody">
+    <h5>Wyszukiwarka zawodów</h5>
   </a>
   <a href="/register" class="register" *ngIf="!isLoggedIn" routerLink="register">Zarejestruj się</a>
   <a href="/login" class="login" routerLink="login" *ngIf="!isLoggedIn">Zaloguj się</a>

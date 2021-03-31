@@ -1,0 +1,23 @@
+<div class="content">
+  <h2>Wyszukiwarka zawodów</h2>
+  <span class="letter"  *ngFor="let letter of lettersToUse"
+    (click)="getProffesions(letter)"> {{letter}}
+  </span>
+  <div class="md-form">
+    <form class="form-inline md-form mr-auto mb-4">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"  [(ngModel)]="searchProffesionText" [ngModelOptions]="{standalone: true}" >
+      <button class="my-0 waves-light" type="submit" (click)="postProffesions()"> Search </button>
+    </form>
+  </div>
+  <div  class="results" *ngIf="professions">
+    <div class="result" *ngFor="let profession of professions">
+      {{profession.name}}
+    </div>
+  </div>
+  <div  class="results" *ngIf="!professions">
+    Oczekiwanie...
+  </div>
+  <div  class="results" *ngIf="professions && professions.length === 0">
+    Lista zawodów pusta.
+  </div>
+</div>
