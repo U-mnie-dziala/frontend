@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchService} from '../../services/search.service';
 import {ElementaryGroupForSearch} from '../../interfaces/elementary-group-for-search';
+import { ActivatedRoute } from '@angular/router';
+import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-searcher',
@@ -8,14 +10,15 @@ import {ElementaryGroupForSearch} from '../../interfaces/elementary-group-for-se
   styleUrls: ['./searcher.component.css']
 })
 export class SearcherComponent implements OnInit {
-  allProffesions: string[];
-  searchProffesionText: string;
   searchGroupText = '';
   groups: ElementaryGroupForSearch[] = [];
 
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.searchGroupText = params.searchGroupText;
+    });
     this.getGroups();
   }
 

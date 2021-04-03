@@ -25,7 +25,6 @@ export class SearchService {
   }
 
   postGroup(searchGroupText: string): Observable<any> {
-    console.log('Input: ' + searchGroupText);
     return this.httpClient.post(this.urlElementary, searchGroupText, this.httpOptions);
   }
 }

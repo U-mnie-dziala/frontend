@@ -83,10 +83,6 @@ export class QuizDetailsComponent implements OnInit {
         if (this.quiz.questionList.length === 0) {
           console.log('QuestionListEmpty');
           this.postResults();
-          this.resultsReady = 1;
-          if (this.quiz.questionList.length === 0) {
-            this.resultsReady = 0;
-          }
         }
       }
     );
@@ -95,7 +91,13 @@ export class QuizDetailsComponent implements OnInit {
   postResults(): void {
     this.startQuizService.getResults(this.quiz).subscribe(results => this.results = results,
       err => console.error('Observer got an error: ' + err),
-      () => console.log('Response: ' + JSON.stringify(this.results))
+      () => {
+        console.log('Response: ' + JSON.stringify(this.results));
+        this.resultsReady = 1;
+        if (this.results.length === 0) {
+          this.resultsReady = 0;
+        }
+      }
     );
   }
   // --- //

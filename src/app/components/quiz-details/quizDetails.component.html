@@ -36,6 +36,9 @@
             <li>
               {{result.tasks}}
             </li>
+            <li>
+              <a target="_blank" [routerLink]="['/wyszukaj/zawody/', result.code]"> Kliknij tutaj, aby zobaczyć listę dostepnych zawodów (w nowej karcie) </a>
+            </li>
           </ul>
         </ng-template>
       </mat-expansion-panel>
@@ -43,6 +46,9 @@
   </div>
   <div class="results" *ngIf="resultsReady == 0">
     <p> Nie znaleziono żadnych dopasowanych grup elementarnych. Możesz rozważyć zwiększenie kwalifikacji. </p>
+  </div>
+  <div class="results" *ngIf="quiz.questionList.length == 0 && resultsReady == -1">
+    <p> Loading... </p>
   </div>
 </div>
 

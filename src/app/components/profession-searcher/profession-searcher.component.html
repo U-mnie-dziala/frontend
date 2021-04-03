@@ -1,7 +1,7 @@
 <div class="content">
   <h2>Wyszukiwarka zawodów</h2>
   <span class="letter"  *ngFor="let letter of lettersToUse"
-    (click)="getProffesions(letter)"> {{letter}}
+        [routerLink]="['/wyszukaj/zawody/', letter]" (click)="getProffesions(letter)"> {{letter}}
   </span>
   <div class="md-form">
     <form class="form-inline md-form mr-auto mb-4">
@@ -11,7 +11,27 @@
   </div>
   <div  class="results" *ngIf="professions">
     <div class="result" *ngFor="let profession of professions">
-      {{profession.name}}
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          {{profession.name}}
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <ul>
+            <li>
+              {{profession.code}}
+            </li>
+            <li>
+              {{profession.synthesis}}
+            </li>
+            <li *ngIf="profession.tasks">
+              {{profession.tasks}}
+            </li>
+            <li *ngIf="profession.additionalTasks">
+              {{profession.additionalTasks}}
+            </li>
+          </ul>
+        </ng-template>
+      </mat-expansion-panel>
     </div>
   </div>
   <div  class="results" *ngIf="!professions">
