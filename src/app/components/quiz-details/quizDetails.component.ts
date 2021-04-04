@@ -3,6 +3,7 @@ import {Quiz} from '../../interfaces/quiz';
 import {StartQuizService} from '../../services/start-quiz.service';
 import {Answer} from '../../interfaces/answer';
 import {ElementaryGroup} from '../../interfaces/elementary-group';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-quiz-details',
@@ -17,10 +18,22 @@ export class QuizDetailsComponent implements OnInit {
   userAnswersIds: number[] = [];
   results: ElementaryGroup[] = [];
 
-  constructor(private startQuizService: StartQuizService) { }
+  pageEvent: PageEvent;
+  pageSize = 15;
+  length: number;
+  pageSizeOptions: number[] = [5, 10, 15, 25, 50];
+  paginatorData = [];
+
+  constructor(private startQuizService: StartQuizService) {
+  }
 
   ngOnInit(): void {
     this.getQuiz();
+  }
+
+  paginateData($event: PageEvent): PageEvent {
+    this.paginatorData = this.results.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+    return $event;
   }
 
   // -buttons- //
@@ -32,10 +45,9 @@ export class QuizDetailsComponent implements OnInit {
   editCheckboxed(event, answer: Answer): void {
     if (event.target.checked) {
       this.checkBoxed.push(answer);
-    }
-    else {
+    } else {
       for (let i = 0; i < this.checkBoxed.length; i++) {
-        if (this.checkBoxed[i].id === answer.id){
+        if (this.checkBoxed[i].id === answer.id) {
           this.checkBoxed.splice(i, 1);
           break;
         }
@@ -50,6 +62,7 @@ export class QuizDetailsComponent implements OnInit {
     }
     this.sendAnswers();
   }
+
   // --- //
 
   sendAnswers(): void {
@@ -89,7 +102,11 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   postResults(): void {
-    this.startQuizService.getResults(this.quiz).subscribe(results => this.results = results,
+    this.startQuizService.getResults(this.quiz).subscribe(results => {
+        this.results = results;
+        this.paginatorData = results.slice(0, this.pageSize);
+        this.length = results.length;
+      },
       err => console.error('Observer got an error: ' + err),
       () => {
         console.log('Response: ' + JSON.stringify(this.results));
@@ -100,5 +117,7 @@ export class QuizDetailsComponent implements OnInit {
       }
     );
   }
+
   // --- //
 }
+

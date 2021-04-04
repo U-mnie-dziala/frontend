@@ -1,4 +1,10 @@
 <div class="content" *ngIf="quiz">
+  <div class="results" *ngIf="resultsReady == 0">
+    <p> Nie znaleziono żadnych dopasowanych grup elementarnych. Możesz rozważyć zwiększenie kwalifikacji. </p>
+  </div>
+  <div class="results" *ngIf="quiz.questionList.length == 0 && resultsReady == -1">
+    <p> Loading... </p>
+  </div>
   <div id="quiz" *ngIf="quiz.questionList.length > 0">
     <div class="question" >
       <span> {{quiz.questionList[0].text}} </span> <br />
@@ -20,7 +26,7 @@
   </div>
   <div class="results" *ngIf="resultsReady == 1">
     <p> Twoje grupy elementarne: </p>
-    <div class="result" *ngFor = "let result of results">
+    <div class="result" *ngFor = "let result of paginatorData">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           {{result.name}}
@@ -43,12 +49,12 @@
         </ng-template>
       </mat-expansion-panel>
     </div>
-  </div>
-  <div class="results" *ngIf="resultsReady == 0">
-    <p> Nie znaleziono żadnych dopasowanych grup elementarnych. Możesz rozważyć zwiększenie kwalifikacji. </p>
-  </div>
-  <div class="results" *ngIf="quiz.questionList.length == 0 && resultsReady == -1">
-    <p> Loading... </p>
+    <mat-paginator id="paginator"
+                   [length]="results.length"
+                   [pageSize]="pageSize"
+                   [pageSizeOptions]="pageSizeOptions"
+                   (page)="pageEvent = paginateData($event)">
+    </mat-paginator>
   </div>
 </div>
 

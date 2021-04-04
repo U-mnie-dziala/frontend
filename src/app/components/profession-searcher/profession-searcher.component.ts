@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {SearchService} from '../../services/search.service';
 import {ProfessionForSearch} from '../../interfaces/profession-for-search';
 import { ActivatedRoute } from '@angular/router';
-import {stringify} from 'querystring';
+import {PageEvent} from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-profession-searcher',
@@ -10,9 +11,16 @@ import {stringify} from 'querystring';
   styleUrls: ['./profession-searcher.component.css']
 })
 export class ProfessionSearcherComponent implements OnInit {
+  lettersToUse = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O', 'P', 'R', 'S', 'Ś', 'T', 'U', 'W', 'Z', 'Ż'];
+
+  pageEvent: PageEvent;
+  pageSize = 15;
+  length: number;
+  pageSizeOptions: number[] = [5, 10, 15, 25, 50];
+  paginatorData = [];
+
   searchProffesionText = '';
   professions: ProfessionForSearch[] = [];
-  lettersToUse = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O', 'P', 'R', 'S', 'Ś', 'T', 'U', 'W', 'Z', 'Ż'];
 
   constructor(private searchService: SearchService, private route: ActivatedRoute) { }
 
@@ -28,23 +36,44 @@ export class ProfessionSearcherComponent implements OnInit {
     }
   }
 
+  paginateData($event: PageEvent): PageEvent {
+    this.paginatorData = this.professions.slice($event.pageIndex * $event.pageSize, $event.pageIndex * $event.pageSize + $event.pageSize);
+    return $event;
+  }
+
   getProffesions(letter: string): void{
     this.professions = null;
     if (this.searchProffesionText){
-      this.searchService.getProffesions(letter).subscribe(element => this.professions = element);
+      this.searchService.getProffesions(letter).subscribe(element => {
+        this.professions = element;
+        this.paginatorData = element.slice(0, this.pageSize);
+        this.length = element.length;
+      });
     }
     else {
-      this.searchService.getProffesions('A').subscribe(element => this.professions = element);
+      this.searchService.getProffesions('A').subscribe(element => {
+        this.professions = element;
+        this.paginatorData = element.slice(0, this.pageSize);
+        this.length = element.length;
+      });
     }
   }
 
   postProffesions(): void {
     this.professions = null;
     if (this.searchProffesionText){
-      this.searchService.postProffesions(this.searchProffesionText).subscribe(element => this.professions = element);
+      this.searchService.postProffesions(this.searchProffesionText).subscribe(element => {
+        this.professions = element;
+        this.paginatorData = element.slice(0, this.pageSize);
+        this.length = element.length;
+      });
     }
     else {
-      this.searchService.postProffesions(' ').subscribe(element => this.professions = element);
+      this.searchService.getProffesions(' ').subscribe(element => {
+        this.professions = element;
+        this.paginatorData = element.slice(0, this.pageSize);
+        this.length = element.length;
+      });
     }
   }
 
