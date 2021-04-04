@@ -13,6 +13,8 @@ import {PageEvent} from '@angular/material/paginator';
 export class QuizDetailsComponent implements OnInit {
   resultsReady = -1;
   quiz: Quiz;
+  priorQuiz: Quiz;
+  returned = true;
   checkBoxed: Answer[] = [];
   userAnswers: Answer[] = [];
   userAnswersIds: number[] = [];
@@ -63,11 +65,21 @@ export class QuizDetailsComponent implements OnInit {
     this.sendAnswers();
   }
 
+  previousQuestion(): void {
+    this.quiz = this.priorQuiz;
+    this.quiz.answerIds = [];
+    this.returned = true;
+    this.checkBoxed = [];
+    this.userAnswers = [];
+    this.userAnswersIds = [];
+  }
+
   // --- //
 
   sendAnswers(): void {
     this.getUserAnswersIds();
     console.log('Sendig post...');
+    this.returned = false;
     this.postQuiz();
     this.userAnswersIds = [];
     this.userAnswers = [];
@@ -81,7 +93,10 @@ export class QuizDetailsComponent implements OnInit {
 
   // -requests- //
   getQuiz(): void {
-    this.startQuizService.getQuiz().subscribe(quiz => this.quiz = quiz,
+    this.startQuizService.getQuiz().subscribe(quiz => {
+        this.priorQuiz = this.quiz;
+        this.quiz = quiz;
+      },
       err => console.error('Observer got an error: ' + err),
       () => console.log('Get: ' + JSON.stringify(this.quiz))
     );
@@ -89,10 +104,14 @@ export class QuizDetailsComponent implements OnInit {
 
   postQuiz(): void {
     console.log('Post:\n' + JSON.stringify(this.quiz));
-    this.startQuizService.sendUserAnswers(this.quiz).subscribe(quiz => this.quiz = quiz,
+    this.startQuizService.sendUserAnswers(this.quiz).subscribe(quiz => {
+        this.priorQuiz = this.quiz;
+        this.quiz = quiz;
+      },
       err => console.error('Observer got an error: ' + err),
       () => {
         console.log('Resp:\n' + JSON.stringify(this.quiz));
+        console.log('prior:\n' + JSON.stringify(this.priorQuiz));
         if (this.quiz.questionList.length === 0) {
           console.log('QuestionListEmpty');
           this.postResults();

@@ -16,13 +16,14 @@
           <input type="checkbox" (change)="editCheckboxed($event, answer)"> <span> {{ answer.text }} </span>
         </label>
       </div>
-      <input id="nextQuestion" type="button" value="Następne pytanie &raquo;"  (click)="saveManyAnswers()">
+      <input class="navQuestions" id="next" type="button" value="Następne pytanie &raquo;"  (click)="saveManyAnswers()">
     </div>
     <div  class="answers" *ngIf="!quiz.questionList[0].multipleChoice">
       <div class="answer"  *ngFor = "let answer of quiz.questionList[0].answers">
         <input class="answerButton" type="button" value="{{ answer.text }}" (click)="saveOneAnswer(answer)">
       </div>
     </div>
+    <input class="navQuestions" id="previous" type="button" value="&laquo;" [disabled]="returned"  (click)="previousQuestion()">
   </div>
   <div class="results" *ngIf="resultsReady == 1">
     <p> Twoje grupy elementarne: </p>
