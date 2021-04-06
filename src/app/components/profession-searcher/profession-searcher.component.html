@@ -10,7 +10,7 @@
     </form>
   </div>
   <div  class="results" *ngIf="professions">
-    <div class="result" *ngFor="let profession of professions">
+    <div class="result" *ngFor="let profession of paginatorData">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
           {{profession.name}}
@@ -33,6 +33,12 @@
         </ng-template>
       </mat-expansion-panel>
     </div>
+    <mat-paginator id="paginator"
+                    [length]="professions.length"
+                    [pageSize]="pageSize"
+                    [pageSizeOptions]="pageSizeOptions"
+                    (page)="pageEvent = paginateData($event)">
+    </mat-paginator>
   </div>
   <div  class="results" *ngIf="!professions">
     Oczekiwanie...

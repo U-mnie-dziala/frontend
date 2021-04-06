@@ -28,6 +28,7 @@ export class StartQuizService {
   }
 
   public sendUserAnswers(quiz: Quiz): Observable<any>{
+    console.log('If clicked return: ' + JSON.stringify(quiz.questionsHistory));
     return this.httpClient.post(
       this.urlForm,
       quiz,

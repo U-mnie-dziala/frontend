@@ -16,6 +16,7 @@ import { BoardUserComponent } from './components/board-user/board-user.component
 import { AuthInterceptor } from './helpers/auth.interceptors';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfessionSearcherComponent } from './components/profession-searcher/profession-searcher.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ProfessionSearcherComponent } from './components/profession-searcher/pr
     FormsModule,
     MatExpansionModule,
     BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   providers: [AuthInterceptor],
   bootstrap: [AppComponent]
