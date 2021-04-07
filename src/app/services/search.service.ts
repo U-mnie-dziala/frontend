@@ -10,14 +10,13 @@ export class SearchService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'} ),
   };
-  private urlElementary = 'http://localhost:8080/search/elementarygroups';
-  private urlProffesionsLetter = 'http://localhost:8080/search/professions';
-  private urlProffesions = 'http://localhost:8080/search/professions';
+  private urlElementary = 'http://programowaniezespolowe-app.herokuapp.com/search/elementarygroups';
+  private urlProffesions = 'http://programowaniezespolowe-app.herokuapp.com/search/professions';
 
   constructor(private httpClient: HttpClient) {}
 
   getProffesions(letter: string): Observable<any>{
-    return this.httpClient.get(this.urlProffesionsLetter + '/' + letter, this.httpOptions);
+    return this.httpClient.get(this.urlProffesions + '/' + letter, this.httpOptions);
   }
 
   postProffesions(text: string): Observable<any>{
