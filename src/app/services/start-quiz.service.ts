@@ -44,3 +44,5 @@ export class StartQuizService {
     );
   }
 }
+
+// TODO: if resultList create object quizHisotry( quiz, userID ) and send to serv. Then in userContent get list of it and print
