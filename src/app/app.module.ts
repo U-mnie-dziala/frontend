@@ -13,7 +13,7 @@ import { SearcherComponent } from './components/searcher/searcher.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
-import { AuthInterceptor } from './helpers/auth.interceptors';
+import {AuthInterceptor, authInterceptorProviders} from './helpers/auth.interceptors';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfessionSearcherComponent } from './components/profession-searcher/profession-searcher.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -39,7 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     BrowserAnimationsModule,
     MatPaginatorModule
   ],
-  providers: [AuthInterceptor],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
