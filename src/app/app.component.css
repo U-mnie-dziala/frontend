@@ -51,6 +51,28 @@ a, a:visited, a:hover {
   background: lightgreen;
 }
 
+#accountNav {
+  margin: .1%;
+  width: auto;
+  min-width: 8em;
+}
+
+#accountNav > * {
+  width: 100%;
+  padding: 1%;
+  text-align: center;
+}
+
+#profile {;
+  background: rgba(255,255,0,.3);
+
+}
+
+#logout {
+  background: rgba(255,0,0,.2);
+  height: 3em;
+}
+
 .content {
   display: flex;
   margin: 82px auto 32px;

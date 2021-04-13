@@ -13,6 +13,7 @@ import {ProfessionSearcherComponent} from './components/profession-searcher/prof
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'quiz', component: QuizDetailsComponent },
+  { path: 'quiz/:UUID', component: QuizDetailsComponent },
   { path: 'wyszukaj/grupy', component: SearcherComponent },
   { path: 'wyszukaj/grupy/:searchGroupText', component: SearcherComponent },
   { path: 'wyszukaj/zawody', component: ProfessionSearcherComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'user', component: BoardUserComponent },
+  { path: 'historia', component: BoardUserComponent },
+  { path: 'historia/:UUID', component: BoardUserComponent },
 ];
 
 @NgModule({

@@ -76,5 +76,4 @@ export class ProfessionSearcherComponent implements OnInit {
       });
     }
   }
-
 }

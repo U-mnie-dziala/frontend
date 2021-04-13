@@ -17,6 +17,7 @@ import {AuthInterceptor, authInterceptorProviders} from './helpers/auth.intercep
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfessionSearcherComponent } from './components/profession-searcher/profession-searcher.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ClipboardModule } from 'ngx-clipboard';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     MatExpansionModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ClipboardModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -26,6 +26,14 @@
     <input class="navQuestions" id="previous" type="button" value="&laquo;" [disabled]="returned"  (click)="previousQuestion()">
   </div>
   <div class="results" *ngIf="resultsReady == 1">
+    <div class="alert alert-success" role="alert" *ngIf="savingHistorySuccesfull" >
+      Zapisanie quizu powiodło się! <br/>
+      {{savingResponse}}
+    </div>
+    <div class="alert alert-danger" *ngIf="!savingHistorySuccesfull">
+      Zapisanie quizu nie powiodło się. <br/>
+      {{savingResponse}}
+    </div>
     <p> Twoje grupy elementarne: </p>
     <div class="result" *ngFor = "let result of paginatorData">
       <mat-expansion-panel>

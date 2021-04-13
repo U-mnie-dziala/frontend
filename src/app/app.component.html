@@ -7,7 +7,6 @@
   <a routerLink="/">
     <h1>Tiara Przydziału</h1>
   </a>
-  <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
   <div id="placeholder"> </div>
   <a class="search" routerLink="/wyszukaj/grupy">
     <h5>Wyszukiwarka grup zawodowych</h5>
@@ -15,15 +14,18 @@
   <a class="search" routerLink="/wyszukaj/zawody">
     <h5>Wyszukiwarka zawodów</h5>
   </a>
+  <a  *ngIf="isLoggedIn" class="search" routerLink="/historia">
+    <h5>Zapisane quizy</h5>
+  </a>
   <a href="/register" class="register" *ngIf="!isLoggedIn" routerLink="register">Zarejestruj się</a>
   <a href="/login" class="login" routerLink="login" *ngIf="!isLoggedIn">Zaloguj się</a>
 
-  <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+  <ul class="navbar-nav ml-auto" id="accountNav" *ngIf="isLoggedIn">
     <li class="nav-item">
-      <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+      <a href="/profile" class="nav-link" id="profile" routerLink="profile">{{ username }}</a>
     </li>
     <li class="nav-item">
-      <a href class="nav-link" (click)="logout()">LogOut</a>
+      <a href class="nav-link" id="logout" (click)="logout()">Wyloguj się</a>
     </li>
   </ul>
 </div>
