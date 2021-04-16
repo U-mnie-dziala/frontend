@@ -21,6 +21,8 @@
     "@angular/platform-browser": "~11.1.2",
     "@angular/platform-browser-dynamic": "~11.1.2",
     "@angular/router": "~11.1.2",
+    "angular-captcha": "^3.7.4",
+    "ng-recaptcha": "^7.0.1",
     "ngx-clipboard": "^14.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

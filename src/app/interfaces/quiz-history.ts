@@ -5,4 +5,5 @@ export interface QuizHistory {
   userId: number;
   quiz: Quiz;
   uuid: string;
+  date: string;
 }
