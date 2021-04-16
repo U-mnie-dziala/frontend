@@ -23,6 +23,7 @@ export class UserHistoryService {
   }
 
   saveUserHistory(quiz: Quiz, userId = this.userId): Observable<any> {
+    console.log('quiz: ' + userId + ', quiz: ' + JSON.stringify(quiz) + '}');
     return this.http.post(API_URL + 'save', {userId, quiz: JSON.stringify(quiz)} , { responseType: 'text' });
   }
 

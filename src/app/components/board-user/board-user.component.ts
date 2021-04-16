@@ -13,7 +13,7 @@ import {ActivatedRoute} from '@angular/router';
 export class BoardUserComponent implements OnInit {
   userHistory: QuizHistory[];
   errMessege: string;
-  publicLink = 'http://localhost:8080/api/quizhistory/';
+  publicLink = 'http://localhost:4200/historia/';
   uuid: string;
   @Input() userName: string;
   @Input() userId: number;
@@ -53,6 +53,9 @@ export class BoardUserComponent implements OnInit {
         this.userHistory = JSON.parse(data);
         for (let i = 0; i < this.userHistory.length; i++) {
           this.userHistory[i].quiz = JSON.parse(JSON.parse(data)[i].quiz);
+
+          console.log(JSON.parse(data));
+          console.log(this.userHistory);
         }
       },
       err => {

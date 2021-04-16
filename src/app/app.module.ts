@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfessionSearcherComponent } from './components/profession-searcher/profession-searcher.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ClipboardModule } from 'ngx-clipboard';
+import { BotDetectCaptchaModule } from 'angular-captcha';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ClipboardModule } from 'ngx-clipboard';
     MatExpansionModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
-    ClipboardModule
+    ClipboardModule,
+    BotDetectCaptchaModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
