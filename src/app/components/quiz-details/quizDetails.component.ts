@@ -29,7 +29,7 @@ export class QuizDetailsComponent implements OnInit {
   paginatorData = [];
 
   savingResponse: string;
-  savingHistorySuccesfull: boolean;
+  savingHistorySuccesfull: boolean = null;
 
   UUID: string;
 
@@ -140,10 +140,14 @@ export class QuizDetailsComponent implements OnInit {
       this.userHistoryService.saveUserHistory(this.quiz).subscribe(response => {
           this.savingResponse = response;
           this.savingHistorySuccesfull = true;
+          console.log('Fail to save. Provided to userHistory');
         },
         err => {
           this.savingResponse = err.error.message;
           this.savingHistorySuccesfull = false;
+          this.userHistoryService.quiz = this.quiz;
+          this.userHistoryService.saveHistoryFailed = true;
+          console.log('Fail to save. Provided to userHistory');
         }
       );
     }

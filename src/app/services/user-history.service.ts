@@ -13,7 +13,9 @@ const API_URL = 'http://localhost:8080/api/quizhistory/';
 export class UserHistoryService {
   username: string;
   userId: number;
+
   quiz: Quiz;
+  saveHistoryFailed: boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -22,8 +24,8 @@ export class UserHistoryService {
     return this.http.post(API_URL + 'getuserhistory', { userId, username } , { responseType: 'text' });
   }
 
-  saveUserHistory(quiz: Quiz, userId = this.userId): Observable<any> {
-    console.log('quiz: ' + userId + ', quiz: ' + JSON.stringify(quiz) + '}');
+  saveUserHistory(quiz = this.quiz, userId = this.userId): Observable<any> {
+    console.log('save userHistory: ' + userId + '/' + JSON.stringify(quiz));
     return this.http.post(API_URL + 'save', {userId, quiz: JSON.stringify(quiz)} , { responseType: 'text' });
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TokenStorageService } from '../../services/token-storage.service';
+import {UserHistoryService} from '../../services/user-history.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,10 @@ export class LoginComponent implements OnInit {
   message = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  responseSaving = '';
+
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
+              private userHistoryService: UserHistoryService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -38,11 +42,31 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
       },
       err => {
         this.message = err.error.message;
         this.isLoginFailed = true;
+      },
+      () => {
+        if (this.isLoggedIn && this.userHistoryService.saveHistoryFailed) {
+            this.userHistoryService.userId = this.tokenStorage.getUser().id;
+            console.log('Execute saveUserHistory');
+            this.userHistoryService.saveUserHistory().subscribe(response => {
+                this.responseSaving = response;
+                console.log('Success to save quiz: ' + response + '.');
+              },
+              err => {
+                this.userHistoryService.quiz = null;
+                this.userHistoryService.saveHistoryFailed = false;
+                console.log('Failed to save quiz');
+              },
+              () => this.reloadPage()
+            );
+            console.log('Reloading...');
+        }
+        else{
+          this.reloadPage();
+        }
       }
     );
   }
