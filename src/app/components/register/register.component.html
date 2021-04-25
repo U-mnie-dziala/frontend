@@ -1,5 +1,5 @@
 <div class="content">
-  <h2>
+  <h2 *ngIf="!isSuccessful">
     Zarejestruj się, aby korzystać z pełni możliwości!
   </h2>
   <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>

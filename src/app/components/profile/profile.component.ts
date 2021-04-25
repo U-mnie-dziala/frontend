@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit {
     this.user = this.token.getUser();
   }
 
-
   newEmailEvent(newEmail: string): void {
     this.newEmail = newEmail;
   }
@@ -48,12 +47,12 @@ export class ProfileComponent implements OnInit {
     this.profileService.changeEmail(this.user.id, this.currentPass, this.newEmail).subscribe(resp => {
           this.success = true;
           this.error = false;
-          this.errMess = 'Sukces! ' + resp;
+          this.messege = resp;
       },
       err => {
         this.success = false;
         this.error = true;
-        this.errMess = 'Serwer zwrócił błąd: ' + err.messege;
+        this.errMess = 'Serwer zwrócił błąd. Nieprawidłowy lub zajęty adres email.';
       }
     );
   }
@@ -78,12 +77,12 @@ export class ProfileComponent implements OnInit {
     this.profileService.changePassword(this.user.id, this.currentPass, this.newPass).subscribe(resp => {
           this.success = true;
           this.error = false;
-          this.errMess = 'Sukces! ' + resp;
+          this.messege = resp;
         },
         err => {
           this.success = false;
           this.error = true;
-          this.errMess = 'Serwer zwrócił błąd: ' + err.messege;
+          this.errMess = 'Serwer zwrócił błąd. Hasło nieprawidłowe.';
         }
     );
   }
@@ -98,13 +97,13 @@ export class ProfileComponent implements OnInit {
     this.profileService.deleteAccount(this.user.id, this.currentPass).subscribe(resp => {
           this.success = true;
           this.error = false;
-          this.errMess = 'Sukces! ' + resp;
+          this.messege = resp + ' ( ͡° ͜ʖ ͡°)';
           setTimeout(() => this.token.signOut(), 5000);
         },
         err => {
           this.success = false;
           this.error = true;
-          this.errMess = 'Serwer zwrócił błąd: ' + err.messege;
+          this.errMess = 'Serwer zwrócił błąd. Hasło nieprawidłowe.';
         }
     );
   }

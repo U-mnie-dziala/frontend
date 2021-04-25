@@ -21,6 +21,7 @@ export class QuizDetailsComponent implements OnInit {
   userAnswers: Answer[] = [];
   userAnswersIds: number[] = [];
   results: ElementaryGroup[] = [];
+  waiting = true;
 
   pageEvent: PageEvent;
   pageSize = 15;
@@ -74,7 +75,6 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   saveManyAnswers(): void {
-    console.log('Save many');
     if (this.checkBoxed.length !== 0) {
       this.checkBoxed.forEach(archivedAnswer => this.userAnswers.push(archivedAnswer));
     }
@@ -109,16 +109,18 @@ export class QuizDetailsComponent implements OnInit {
 
   // -requests- //
   getQuiz(): void {
+    this.waiting = true;
     this.startQuizService.getQuiz().subscribe(quiz => {
         this.priorQuiz = this.quiz;
         this.quiz = quiz;
       },
       err => console.error('Observer got an error: ' + err),
-      () => console.log('Get: ' + JSON.stringify(this.quiz))
+      () => this.waiting = false
     );
   }
 
   postQuiz(): void {
+    this.waiting = true;
     this.startQuizService.sendUserAnswers(this.quiz).subscribe(quiz => {
         this.priorQuiz = this.quiz;
         this.quiz = quiz;
@@ -128,6 +130,7 @@ export class QuizDetailsComponent implements OnInit {
         if (this.quiz.questionList.length === 0) {
           this.postResults();
         }
+        this.waiting = false;
       }
     );
   }
@@ -148,7 +151,7 @@ export class QuizDetailsComponent implements OnInit {
           this.userHistoryService.quiz = this.quiz;
           this.userHistoryService.saveHistoryFailed = true;
           console.log('Fail to save. Provided to userHistory');
-        }
+        },
       );
     }
 

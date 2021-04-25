@@ -19,6 +19,7 @@ import { ProfessionSearcherComponent } from './components/profession-searcher/pr
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ClipboardModule } from 'ngx-clipboard';
 import { BotDetectCaptchaModule } from 'angular-captcha';
+import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,16 @@ import { BotDetectCaptchaModule } from 'angular-captcha';
     BrowserAnimationsModule,
     MatPaginatorModule,
     ClipboardModule,
-    BotDetectCaptchaModule
+    BotDetectCaptchaModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.threeBounce,
+      backdropBorderRadius: '14px',
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)',
+      fullScreenBackdrop: true,
+      primaryColour: 'greenyellow',
+      secondaryColour: 'peachpuff',
+      tertiaryColour: '#FFFF66'
+    })
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

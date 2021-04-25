@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 export class ProfileService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'} ),
+    responseType: 'text' as 'json'
   };
   private url = 'http://localhost:8080/api/credentials/';
 

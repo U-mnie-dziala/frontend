@@ -1,4 +1,8 @@
 <div *ngIf="userHistory" class="content">
+  <div class="alert alert-danger" role="alert" *ngIf="gettingHistoryFailed" >
+    Nie udało się pobrać Twojej historii. Spróbuj zalogować się ponownie. <br/>
+    {{errMessege}}
+  </div>
   <h2 *ngIf="uuid && uuid.length == 0">
     Twoje zapisane quizy
   </h2>

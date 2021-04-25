@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TokenStorageService } from '../../services/token-storage.service';
 import {UserHistoryService} from '../../services/user-history.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,16 +16,23 @@ export class LoginComponent implements OnInit {
   };
   isLoggedIn = false;
   isLoginFailed = false;
+  isTokenExpired = false;
   message = '';
   roles: string[] = [];
 
   responseSaving = '';
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
-              private userHistoryService: UserHistoryService) { }
+              private userHistoryService: UserHistoryService, private router: Router) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
+    if (this.router.url === '/zaloguj/re'){
+      this.tokenStorage.signOut();
+      this.message = 'Twoja sesja wygasła, zaloguj się ponownie.';
+      this.isTokenExpired = true;
+    }
+    else if (this.tokenStorage.getToken()) {
+      console.log(this.tokenStorage.getUser());
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
     }
@@ -50,19 +58,15 @@ export class LoginComponent implements OnInit {
       () => {
         if (this.isLoggedIn && this.userHistoryService.saveHistoryFailed) {
             this.userHistoryService.userId = this.tokenStorage.getUser().id;
-            console.log('Execute saveUserHistory');
             this.userHistoryService.saveUserHistory().subscribe(response => {
                 this.responseSaving = response;
-                console.log('Success to save quiz: ' + response + '.');
               },
               err => {
                 this.userHistoryService.quiz = null;
                 this.userHistoryService.saveHistoryFailed = false;
-                console.log('Failed to save quiz');
               },
               () => this.reloadPage()
             );
-            console.log('Reloading...');
         }
         else{
           this.reloadPage();
@@ -72,6 +76,9 @@ export class LoginComponent implements OnInit {
   }
 
   reloadPage(): void {
-    window.location.reload();
+    this.router.navigate(['/zaloguj'])
+      .then(() => {
+        window.location.reload();
+      });
   }
 }

@@ -3,7 +3,7 @@ import { UserService } from '../../services/user.service';
 import {UserHistoryService} from '../../services/user-history.service';
 import {QuizHistory} from '../../interfaces/quiz-history';
 import {SearchService} from '../../services/search.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-board-user',
@@ -17,8 +17,9 @@ export class BoardUserComponent implements OnInit {
   uuid: string;
   @Input() userName: string;
   @Input() userId: number;
+  gettingHistoryFailed = false;
 
-  constructor(private userHistoryService: UserHistoryService, private route: ActivatedRoute) { }
+  constructor(private userHistoryService: UserHistoryService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -53,13 +54,15 @@ export class BoardUserComponent implements OnInit {
         this.userHistory = JSON.parse(data);
         for (let i = 0; i < this.userHistory.length; i++) {
           this.userHistory[i].quiz = JSON.parse(JSON.parse(data)[i].quiz);
-
-          console.log(JSON.parse(data));
-          console.log(this.userHistory);
+          this.gettingHistoryFailed = false;
         }
       },
       err => {
+        if (err.status === 401){
+          this.router.navigateByUrl('/zaloguj/re');
+        }
         this.errMessege = JSON.parse(err.error).message;
+        this.gettingHistoryFailed = true;
       }
     );
   }
