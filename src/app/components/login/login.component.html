@@ -1,4 +1,10 @@
-<div class="content">
+<div class="content" *ngIf="!resetPassword && !emailSent && !newPassword">
+  <div class="alert alert-success" *ngIf="changedPassword && changedPasswordOK">
+    Hasło zmienione pomyślnie. Możesz się teraz zalogować!
+  </div>
+  <div class="alert alert-success" *ngIf="changedPassword && !changedPasswordOK">
+    Hasło nie zostało poprawnie zmienione. Błąd serwera, spróbuj ponownie.
+  </div>
   <div class="alert alert-danger" role="alert" *ngIf="message" >
     {{message}}
   </div>
@@ -31,6 +37,10 @@
         Zaloguj się
       </button>
       <br />
+      <a routerLink="/zaloguj" (click)="resetPassword = true">
+        Nie pamiętasz hasła?
+      </a>
+      <br />
       <a routerLink="/zarejestruj">
         Nie masz konta? Zarejestruj się!
       </a>
@@ -48,4 +58,76 @@
   <div class="alert alert-success" *ngIf="responseSaving">
     {{responseSaving}}
   </div>
+</div>
+<div class="content" *ngIf="resetPassword">
+  <div class="alert alert-danger" role="alert" *ngIf="!emailSentSuccess" >
+    Email z kodem potwierdzającym nie został wysłany. Sprawdź czy email jest prawidłowy i spróbuj ponownie.
+  </div>
+  <h2>
+    Zmień hasło
+  </h2>
+  <form>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel"/>
+      <div class="alert-danger" *ngIf="email.errors">
+        <div *ngIf="email.errors.required">Email wymagany</div>
+        <div *ngIf="email.errors.email">
+          Adres email nieprawidłowy.
+        </div>
+        <div *ngIf="email.errors.maxlenght">
+          Email może zawierać maksimum 50 znaków
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block" (click)="resetPasswordRequest(email.value)" [disabled]="email.errors"> Wyślij e-mail potwierdzający </button>
+    </div>
+  </form>
+</div>
+<div class="content" *ngIf="emailSent">
+  <div class="alert alert-danger" role="alert" *ngIf="!correctCode" >
+    Kod resetujący niepoprawny.
+  </div>
+  <div class="alert alert-success" *ngIf="correctCode">
+    Email z kodem potwierdzającym został wysłany. Wprowadź go poniżej.
+  </div>
+  <form>
+    <div class="form-group">
+      <label for="code">Kod potwierdzający</label>
+      <input type="text" class="form-control" (blur)="changePasswordCode = $any($event.target).value">
+    </div>
+    <button class="btn btn-primary btn-block" (click)="checkCode()" [disabled]="!changePasswordCode"> Potwierdź </button>
+  </form>
+</div>
+<div class="content" *ngIf="newPassword">
+  <div class="alert alert-success" *ngIf="correctCode">
+    Kod prawidłowy. Możesz ustaw nowe hasło.
+  </div>
+  <form>
+    <div class="form-group">
+      <label for="password">Hasło</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel"/>
+      <div class="alert-danger" *ngIf="password.errors">
+        <div *ngIf="password.errors.required">Hasło wymagane</div>
+        <div *ngIf="password.errors.minlength">
+          Hasło musi zawierać minimum 6 znaków
+        </div>
+        <div *ngIf="password.errors.maxlenght">
+          Hasło może zawierać maksimum 40 znaków
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Potwierdź hasło</label>
+      <input type="password" class="form-control" name="password2" [(ngModel)]="form.password2" required #password2="ngModel"/>
+      <div class="alert-danger" *ngIf="password2.errors">
+        <div *ngIf="password2.errors.required">Potwierdzenie hasła wymagane</div>
+      </div>
+      <div class="alert-danger" *ngIf="notequal">
+        Hasła nie są takie same
+      </div>
+    </div>
+    <button class="btn btn-primary btn-block" (click)="changePassword(password.value)" [disabled]="password.errors || password2.errors || notequal"> Wyślij e-mail potwierdzający </button>
+  </form>
 </div>

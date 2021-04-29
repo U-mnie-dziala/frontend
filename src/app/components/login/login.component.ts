@@ -22,6 +22,17 @@ export class LoginComponent implements OnInit {
 
   responseSaving = '';
 
+  resetPassword = false;
+  newPassword = false;
+  emailSent = false;
+
+  changedPassword = false;
+  changePasswordCode: string;
+  notequal: any;
+  emailSentSuccess = true;
+  correctCode = true;
+  changedPasswordOK = false;
+
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
               private userHistoryService: UserHistoryService, private router: Router) { }
 
@@ -39,6 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.unsetResettingPassword();
     const { username, password } = this.form;
 
     this.authService.login(username, password).subscribe(
@@ -80,5 +92,45 @@ export class LoginComponent implements OnInit {
       .then(() => {
         window.location.reload();
       });
+  }
+
+  unsetResettingPassword(): void {
+    this.resetPassword = false;
+    this.emailSent = false;
+    this.newPassword = false;
+    this.changedPassword = false;
+
+  }
+
+  resetPasswordRequest(email: string): void {
+    this.authService.resetPassword(email).subscribe(response => {
+      this.resetPassword = false;
+      this.emailSentSuccess = true;
+      this.emailSent = true;
+      },
+      error => this.emailSentSuccess = false
+    );
+  }
+
+  checkCode(): void {
+    this.authService.resetPasswordwithToken(this.changePasswordCode).subscribe(response => {
+        this.newPassword = true;
+        this.emailSent = false;
+        this.correctCode = true;
+      },
+      error => this.correctCode = false
+    );
+  }
+
+  changePassword(newPassword: string): void {
+    this.authService.resetPasswordFinal(newPassword, this.changePasswordCode).subscribe(response => {
+        this.changedPassword = true;
+        this.changedPasswordOK = true;
+      },
+      error => {
+        this.changedPassword = true;
+        this.changedPasswordOK = false;
+      }
+    );
   }
 }
