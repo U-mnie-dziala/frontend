@@ -20,7 +20,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ClipboardModule } from 'ngx-clipboard';
 import { BotDetectCaptchaModule } from 'angular-captcha';
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from 'ngx-loading';
-import { StatisticsComponent } from './components/statistics/statistics.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
     BoardUserComponent,
     ProfileComponent,
     ProfessionSearcherComponent,
-    StatisticsComponent,
   ],
   imports: [
     BrowserModule,

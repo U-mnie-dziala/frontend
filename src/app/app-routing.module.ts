@@ -9,7 +9,6 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
 import {ProfessionSearcherComponent} from './components/profession-searcher/profession-searcher.component';
-import {StatisticsComponent} from './components/statistics/statistics.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -19,7 +18,6 @@ const routes: Routes = [
   { path: 'wyszukaj/grupy/:searchGroupText', component: SearcherComponent },
   { path: 'wyszukaj/zawody', component: ProfessionSearcherComponent },
   { path: 'wyszukaj/zawody/:searchProffesionText', component: ProfessionSearcherComponent },
-  { path: 'statystyki/:code', component: StatisticsComponent },
   { path: 'zaloguj', component: LoginComponent },
   { path: 'zaloguj/re', component: LoginComponent },
   { path: 'zarejestruj', component: RegisterComponent },
