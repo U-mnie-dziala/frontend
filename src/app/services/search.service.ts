@@ -10,8 +10,8 @@ export class SearchService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'} ),
   };
-  private urlElementary = 'http://programowaniezespolowe-app.herokuapp.com/search/elementarygroups';
-  private urlProffesions = 'http://programowaniezespolowe-app.herokuapp.com/search/professions';
+  private urlElementary = 'http://localhost:8080/search/elementarygroups';
+  private urlProffesions = 'http://localhost:8080/search/professions';
 
   constructor(private httpClient: HttpClient) {}
 
