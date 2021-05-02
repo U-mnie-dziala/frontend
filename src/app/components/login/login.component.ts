@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TokenStorageService } from '../../services/token-storage.service';
+import {UserHistoryService} from '../../services/user-history.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,41 +16,121 @@ export class LoginComponent implements OnInit {
   };
   isLoggedIn = false;
   isLoginFailed = false;
-  errorMessage = '';
+  isTokenExpired = false;
+  message = '';
   roles: string[] = [];
 
-  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  responseSaving = '';
+
+  resetPassword = false;
+  newPassword = false;
+  emailSent = false;
+
+  changedPassword = false;
+  changePasswordCode: string;
+  notequal: any;
+  emailSentSuccess = true;
+  correctCode = true;
+  changedPasswordOK = false;
+
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
+              private userHistoryService: UserHistoryService, private router: Router) { }
 
   ngOnInit(): void {
-    if (this.tokenStorage.getToken()) {
+    if (this.router.url === '/zaloguj/re'){
+      this.tokenStorage.signOut();
+      this.message = 'Twoja sesja wygasła, zaloguj się ponownie.';
+      this.isTokenExpired = true;
+    }
+    else if (this.tokenStorage.getToken()) {
+      console.log(this.tokenStorage.getUser());
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
     }
   }
 
   onSubmit(): void {
+    this.unsetResettingPassword();
     const { username, password } = this.form;
 
     this.authService.login(username, password).subscribe(
       data => {
-        console.log(data);
+        this.message = data.message;
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUser(data);
-        console.log(this.tokenStorage.getUser());
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
-        this.reloadPage();
       },
       err => {
-        this.errorMessage = err.error.message;
+        this.message = err.error.message;
         this.isLoginFailed = true;
+      },
+      () => {
+        if (this.isLoggedIn && this.userHistoryService.saveHistoryFailed) {
+            this.userHistoryService.userId = this.tokenStorage.getUser().id;
+            this.userHistoryService.saveUserHistory().subscribe(response => {
+                this.responseSaving = response;
+              },
+              err => {
+                this.userHistoryService.quiz = null;
+                this.userHistoryService.saveHistoryFailed = false;
+              },
+              () => this.reloadPage()
+            );
+        }
+        else{
+          this.reloadPage();
+        }
       }
     );
   }
 
   reloadPage(): void {
-    window.location.reload();
+    this.router.navigate(['/zaloguj'])
+      .then(() => {
+        window.location.reload();
+      });
+  }
+
+  unsetResettingPassword(): void {
+    this.resetPassword = false;
+    this.emailSent = false;
+    this.newPassword = false;
+    this.changedPassword = false;
+
+  }
+
+  resetPasswordRequest(email: string): void {
+    this.authService.resetPassword(email).subscribe(response => {
+      this.resetPassword = false;
+      this.emailSentSuccess = true;
+      this.emailSent = true;
+      },
+      error => this.emailSentSuccess = false
+    );
+  }
+
+  checkCode(): void {
+    this.authService.resetPasswordwithToken(this.changePasswordCode).subscribe(response => {
+        this.newPassword = true;
+        this.emailSent = false;
+        this.correctCode = true;
+      },
+      error => this.correctCode = false
+    );
+  }
+
+  changePassword(newPassword: string): void {
+    this.authService.resetPasswordFinal(newPassword, this.changePasswordCode).subscribe(response => {
+        this.changedPassword = true;
+        this.changedPasswordOK = true;
+      },
+      error => {
+        this.changedPassword = true;
+        this.changedPasswordOK = false;
+      }
+    );
   }
 }

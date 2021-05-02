@@ -1,5 +1,42 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div *ngIf="userHistory" class="content">
+  <div class="alert alert-danger" role="alert" *ngIf="gettingHistoryFailed" >
+    Nie udało się pobrać Twojej historii. Spróbuj zalogować się ponownie. <br/>
+    {{errMessege}}
+  </div>
+  <h2 *ngIf="uuid && uuid.length == 0">
+    Twoje zapisane quizy
+  </h2>
+  <h2 *ngIf="uuid && uuid.length > 0">
+    Udostępniony quiz
+  </h2>
+  <div class="result" *ngFor = "let history of userHistory">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        Quiz z dnia {{history.date |  date:'dd.MM.YYYY HH:mm'}}, o godzinie {{history.date |  date:'HH:mm'}}
+      </mat-expansion-panel-header>
+      <ng-template matExpansionPanelContent>
+        <input type="button" (click)="showResults(history)" [routerLink]="'../quiz/' + history.uuid" value='Zobacz wyniki' />
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            Lista Twoich pytań i odpowiedzi
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <div *ngFor="let question of history.quiz.questionsHistory">
+              {{question.questionId}} -> {{question.answerIds}}
+            </div>
+          </ng-template>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            Udostępnij quiz Twoim znajomym
+          </mat-expansion-panel-header>
+          <ng-template matExpansionPanelContent>
+            <button class="btn btn-default" type="button" ngxClipboard [cbContent]="publicLink + history.uuid" >
+              Kliknij, aby skopiować
+            </button>
+          </ng-template>
+        </mat-expansion-panel>
+      </ng-template>
+    </mat-expansion-panel>
+  </div>
 </div>

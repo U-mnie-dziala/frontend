@@ -1,3 +1,6 @@
+<div class="content" *ngIf="waiting">
+  <ngx-loading [show]="waiting"></ngx-loading>
+</div>
 <div class="content" *ngIf="quiz">
   <div class="results" *ngIf="resultsReady == 0">
     <p> Nie znaleziono żadnych dopasowanych grup elementarnych. Możesz rozważyć zwiększenie kwalifikacji. </p>
@@ -26,6 +29,14 @@
     <input class="navQuestions" id="previous" type="button" value="&laquo;" [disabled]="returned"  (click)="previousQuestion()">
   </div>
   <div class="results" *ngIf="resultsReady == 1">
+    <div class="alert alert-success" role="alert" *ngIf="savingHistorySuccesfull" >
+      Zapisanie quizu powiodło się! <br/>
+      {{savingResponse}}
+    </div>
+    <div class="alert alert-danger" *ngIf="!savingHistorySuccesfull && !UUID">
+      Quiz nie został zapisany. <br/>
+      Zaloguj się lub zarejestuj, aby zapisać ten quiz automatycznie.
+    </div>
     <p> Twoje grupy elementarne: </p>
     <div class="result" *ngFor = "let result of paginatorData">
       <mat-expansion-panel>

@@ -4,6 +4,8 @@ import {StartQuizService} from '../../services/start-quiz.service';
 import {Answer} from '../../interfaces/answer';
 import {ElementaryGroup} from '../../interfaces/elementary-group';
 import {PageEvent} from '@angular/material/paginator';
+import {UserHistoryService} from '../../services/user-history.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-quiz-details',
@@ -19,6 +21,7 @@ export class QuizDetailsComponent implements OnInit {
   userAnswers: Answer[] = [];
   userAnswersIds: number[] = [];
   results: ElementaryGroup[] = [];
+  waiting = true;
 
   pageEvent: PageEvent;
   pageSize = 15;
@@ -26,11 +29,25 @@ export class QuizDetailsComponent implements OnInit {
   pageSizeOptions: number[] = [5, 10, 15, 25, 50];
   paginatorData = [];
 
-  constructor(private startQuizService: StartQuizService) {
+  savingResponse: string;
+  savingHistorySuccesfull: boolean = null;
+
+  UUID: string;
+
+
+  constructor(private startQuizService: StartQuizService, private route: ActivatedRoute, private userHistoryService: UserHistoryService) {
   }
 
   ngOnInit(): void {
-    this.getQuiz();
+    this.route.params.subscribe(params => {
+      this.UUID = params.UUID;
+    });
+    if (this.UUID){
+      this.postResults();
+    }
+    else{
+      this.getQuiz();
+    }
   }
 
   paginateData($event: PageEvent): PageEvent {
@@ -58,7 +75,6 @@ export class QuizDetailsComponent implements OnInit {
   }
 
   saveManyAnswers(): void {
-    console.log('Save many');
     if (this.checkBoxed.length !== 0) {
       this.checkBoxed.forEach(archivedAnswer => this.userAnswers.push(archivedAnswer));
     }
@@ -93,34 +109,52 @@ export class QuizDetailsComponent implements OnInit {
 
   // -requests- //
   getQuiz(): void {
+    this.waiting = true;
     this.startQuizService.getQuiz().subscribe(quiz => {
         this.priorQuiz = this.quiz;
         this.quiz = quiz;
       },
       err => console.error('Observer got an error: ' + err),
-      () => console.log('Get: ' + JSON.stringify(this.quiz))
+      () => this.waiting = false
     );
   }
 
   postQuiz(): void {
-    console.log('Post:\n' + JSON.stringify(this.quiz));
+    this.waiting = true;
     this.startQuizService.sendUserAnswers(this.quiz).subscribe(quiz => {
         this.priorQuiz = this.quiz;
         this.quiz = quiz;
       },
       err => console.error('Observer got an error: ' + err),
       () => {
-        console.log('Resp:\n' + JSON.stringify(this.quiz));
-        console.log('prior:\n' + JSON.stringify(this.priorQuiz));
         if (this.quiz.questionList.length === 0) {
-          console.log('QuestionListEmpty');
           this.postResults();
         }
+        this.waiting = false;
       }
     );
   }
 
   postResults(): void {
+    if (this.UUID){
+      this.quiz = this.userHistoryService.quiz;
+    }
+    else {
+      this.userHistoryService.saveUserHistory(this.quiz).subscribe(response => {
+          this.savingResponse = response;
+          this.savingHistorySuccesfull = true;
+          console.log('Fail to save. Provided to userHistory');
+        },
+        err => {
+          this.savingResponse = err.error.message;
+          this.savingHistorySuccesfull = false;
+          this.userHistoryService.quiz = this.quiz;
+          this.userHistoryService.saveHistoryFailed = true;
+          console.log('Fail to save. Provided to userHistory');
+        },
+      );
+    }
+
     this.startQuizService.getResults(this.quiz).subscribe(results => {
         this.results = results;
         this.paginatorData = results.slice(0, this.pageSize);
@@ -128,7 +162,6 @@ export class QuizDetailsComponent implements OnInit {
       },
       err => console.error('Observer got an error: ' + err),
       () => {
-        console.log('Response: ' + JSON.stringify(this.results));
         this.resultsReady = 1;
         if (this.results.length === 0) {
           this.resultsReady = 0;

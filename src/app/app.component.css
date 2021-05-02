@@ -7,7 +7,7 @@ h1{
 
 .toolbar {
   position: fixed;
-  z-index: 999;
+  z-index: 9999;
   top: 0;
   left: 0;
   right: 0;
@@ -49,6 +49,28 @@ a, a:visited, a:hover {
 .login {
   padding: 1%;
   background: lightgreen;
+}
+
+#accountNav {
+  margin: .1%;
+  width: auto;
+  min-width: 8em;
+}
+
+#accountNav > * {
+  width: 100%;
+  padding: 1%;
+  text-align: center;
+}
+
+#profile {;
+  background: rgba(255,255,0,.3);
+
+}
+
+#logout {
+  background: rgba(255,0,0,.2);
+  height: 3em;
 }
 
 .content {

@@ -28,8 +28,11 @@ export class ProfessionSearcherComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.searchProffesionText = params.searchProffesionText;
     });
-    if (this.searchProffesionText){
+    if (this.searchProffesionText && this.searchProffesionText.length === 1){
       this.getProffesions(this.searchProffesionText);
+    }
+    else if (this.searchProffesionText){
+      this.postProffesions();
     }
     else {
       this.getProffesions('A');
@@ -76,5 +79,4 @@ export class ProfessionSearcherComponent implements OnInit {
       });
     }
   }
-
 }

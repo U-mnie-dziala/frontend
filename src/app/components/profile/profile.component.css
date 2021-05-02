@@ -1,0 +1,90 @@
+:host {
+  width: 100%;
+  height: 100%;
+}
+.content {
+  width: 100%;
+  height: 100%;
+}
+
+#forms {
+  display: grid;
+  width: 50%;
+  grid-template-areas:
+    "label-email label-email ."
+    "email-label new-email ."
+    "pass-label pass accept-email"
+    "label-pass label-pass ."
+    "old-pass-label old-pass ."
+    "new-pass-label new-pass accept-pass "
+    "delete-acc delete-acc ."
+    "pass-delete-label pass-delete accept-delete"
+}
+
+#forms #label-email {
+  display: grid;
+  grid-area: label-email;
+}
+
+#forms #email-label {
+  display: grid;
+  grid-area: email-label;
+}
+#forms #new-email {
+  display: grid;
+  grid-area: new-email;
+}
+#forms #pass-label {
+  display: grid;
+  grid-area: pass-label;
+}
+#forms #pass {
+  display: grid;
+  grid-area: pass;
+}
+#forms #accept-email {
+  display: grid;
+  grid-area: accept-email;
+}
+
+#forms #label-pass {
+  display: grid;
+  grid-area: label-pass;
+}
+
+#forms #old-pass-label {
+  display: grid;
+  grid-area: old-pass-label;
+}
+#forms #old-pass {
+  display: grid;
+  grid-area: old-pass;
+}
+#forms #new-pass-label {
+  display: grid;
+  grid-area: new-pass-label;
+}
+#forms #new-pass {
+  display: grid;
+  grid-area: new-pass;
+}
+#forms #accept-pass {
+  display: grid;
+  grid-area: accept-pass;
+}
+#forms #delete-acc {
+  display: grid;
+  grid-area: delete-acc;
+}
+#forms #pass-label-delete {
+  display: grid;
+  grid-area: pass-delete-label;
+}
+#forms #pass-delete {
+  display: grid;
+  grid-area: pass-delete;
+}
+#forms #accept-delete {
+  display: grid;
+  grid-area: accept-delete;
+}

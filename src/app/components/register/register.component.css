@@ -1,4 +1,22 @@
 :host {
-  width: 50%;
+  width: 100%;
+}
+
+.content > * {
+  margin: auto;
+  padding: 2%;
+}
+
+h2 {
+  text-align: center;
+}
+
+form {
+  width: 60%;
+  background: rgba(255,255,255,.5);
+}
+
+.alert {
+  text-align: center;
 }
 

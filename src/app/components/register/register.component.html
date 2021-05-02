@@ -1,50 +1,66 @@
-<div class="col-md-12">
-  <div class="card card-container">
-    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel"/>
-        <div class="alert-danger" *ngIf="username.errors && f.submitted">
-          <div *ngIf="username.errors.required">Username is required</div>
-          <div *ngIf="username.errors.minlength">
-            Username must be at least 3 characters
-          </div>
-          <div *ngIf="username.errors.maxlength">
-            Username must be at most 20 characters
-          </div>
+<div class="content">
+  <h2 *ngIf="!isSuccessful">
+    Zarejestruj się, aby korzystać z pełni możliwości!
+  </h2>
+  <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label for="username">Nazwa użytkownika</label>
+      <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="20" #username="ngModel"/>
+      <div class="alert-danger" *ngIf="username.errors && f.submitted">
+        <div *ngIf="username.errors.required">Nazwa użytkownika wymagana</div>
+        <div *ngIf="username.errors.minlength">
+          Nazwa użytkownika musi zawierać minimum 3 znaki.
+        </div>
+        <div *ngIf="username.errors.maxlength">
+          Nazwa użytkownika może składać się maksymalnie z 20 znaków.
         </div>
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel"/>
-        <div class="alert-danger" *ngIf="email.errors && f.submitted">
-          <div *ngIf="email.errors.required">Email is required</div>
-          <div *ngIf="email.errors.email">
-            Email must be a valid email address
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel"/>
-        <div class="alert-danger" *ngIf="password.errors && f.submitted">
-          <div *ngIf="password.errors.required">Password is required</div>
-          <div *ngIf="password.errors.minlength">
-            Password must be at least 6 characters
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary btn-block">Sign Up</button>
-      </div>
-
-      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
-        Signup failed!<br />{{ errorMessage }}
-      </div>
-    </form>
-
-    <div class="alert alert-success" *ngIf="isSuccessful">
-      Your registration is successful!
     </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel"/>
+      <div class="alert-danger" *ngIf="email.errors && f.submitted">
+        <div *ngIf="email.errors.required">Email wymagany</div>
+        <div *ngIf="email.errors.email">
+          Adres email nieprawidłowy.
+        </div>
+        <div *ngIf="email.errors.maxlenght">
+        Email może zawierać maksimum 50 znaków
+      </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Hasło</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6" #password="ngModel"/>
+      <div class="alert-danger" *ngIf="password.errors && f.submitted">
+        <div *ngIf="password.errors.required">Hasło wymagane</div>
+        <div *ngIf="password.errors.minlength">
+          Hasło musi zawierać minimum 6 znaków
+        </div>
+        <div *ngIf="password.errors.maxlenght">
+          Hasło może zawierać maksimum 40 znaków
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Potwierdź hasło</label>
+      <input type="password" class="form-control" name="password2" [(ngModel)]="form.password2" required #password2="ngModel"/>
+      <div class="alert-danger" *ngIf="password2.errors && f.submitted">
+        <div *ngIf="password2.errors.required">Potwierdzenie hasła wymagane</div>
+      </div>
+      <div class="alert-danger" *ngIf="notequal">
+          Hasła nie są takie same
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary btn-block">Zarejestruj konto</button>
+    </div>
+    <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+      {{ message }}
+    </div>
+  </form>
+  <div class="alert alert-success" *ngIf="isSuccessful">
+    {{ message }} <br />
+    Teraz możesz się zalogować.
   </div>
 </div>
