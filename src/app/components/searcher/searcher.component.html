@@ -6,7 +6,7 @@
       <button class="my-0 waves-light" type="submit" (click)="getGroups()"> Search </button>
     </form>
   </div>
-  <div  class="results" *ngIf="groups">
+  <div class="results" *ngIf="groups">
     <div class="result" *ngFor="let group of paginatorData">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -23,6 +23,9 @@
             <li>
               <a target="_blank" [routerLink]="['../zawody/', group.code]"> Kliknij tutaj, aby zobaczyć listę dostepnych zawodów (w nowej karcie) </a>
             </li>
+            <li>
+              <a target="_blank" [routerLink]="['/statystyki/', group.code]"> Kliknij tutaj, aby zobaczyć informacje nt. zarobków i struktury zatrudnienia w tej grupie zawodowej </a>
+            </li>
           </ul>
         </ng-template>
       </mat-expansion-panel>
@@ -34,7 +37,7 @@
     </mat-paginator>
   </div>
   <div  class="results" *ngIf="!groups">
-    Oczekiwanie...
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
   </div>
   <div  class="results" *ngIf="groups && groups.length === 0">
     Lista grup pusta.

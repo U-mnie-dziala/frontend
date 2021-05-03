@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {StatisticsticsService} from '../../services/statisticstics.service';
+import {Statistics} from '../../interfaces/statistics';
 
 @Component({
   selector: 'app-statistics',
@@ -11,22 +12,23 @@ export class StatisticsComponent implements OnInit {
   searchingProffession: string;
   loading = true;
   getSuccess = false;
-  raw: string;
+  statistics: Statistics;
+  error: string;
 
-  constructor(private route: ActivatedRoute, private statistics: StatisticsticsService) {
+  constructor(private route: ActivatedRoute, private statisticsService: StatisticsticsService) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.searchingProffession = params.code;
     });
-    this.statistics.getStatistics(this.searchingProffession).subscribe(element => {
-        this.raw = JSON.stringify(element);
+    this.statisticsService.getStatistics(this.searchingProffession).subscribe(element => {
+        this.statistics = element;
         this.loading = false;
         this.getSuccess = true;
       },
       error => {
-        this.raw = JSON.stringify(error);
+        this.error = 'Serwer zwrócił błąd: grupa zawodowa nie istnieje?';
         this.loading = false;
         this.getSuccess = false;
       }
