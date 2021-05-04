@@ -5,7 +5,7 @@ import {Quiz} from '../interfaces/quiz';
 import {QuizDTO} from '../interfaces/quiz-dto';
 import {stringify} from 'querystring';
 
-const API_URL = 'http://localhost:8080/api/quizhistory/';
+const API_URL = 'https://programowaniezespolowe-app.herokuapp.com/api/quizhistory/';
 
 @Injectable({
   providedIn: 'root'
