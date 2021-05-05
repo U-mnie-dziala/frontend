@@ -15,7 +15,7 @@ ul {
 li {
   flex: 0 0 80%;
   border: 1px solid black;
-  background: lightgoldenrodyellow;
+  background: rgba(100, 255, 0, .1);
   padding: .5em 1em;
   display: flex;
   align-items: flex-end;
@@ -23,6 +23,5 @@ li {
 
 .li-value {
   font-weight: bold;
-  background: lightgoldenrodyellow;
   flex: 0 0 20%;
 }

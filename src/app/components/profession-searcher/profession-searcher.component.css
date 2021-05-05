@@ -11,10 +11,32 @@
 }
 
 .letter:hover {
-  background: yellow;
+  background: #ffff82;
   cursor: pointer;
 }
 
-.results {
+#phrase {
+  width: 50%;
+}
 
+ul {
+  margin-top: 1em;
+  columns: 2;
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+li {
+  flex: 0 0 15%;
+  border: 1px solid black;
+  background: rgba(100, 255, 0, .1);
+  padding: .5em 1em;
+  display: flex;
+  align-items: flex-start;
+}
+
+.li-value {
+  flex: 0 0 85%;
 }

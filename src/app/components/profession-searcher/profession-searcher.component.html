@@ -5,8 +5,8 @@
   </span>
   <div class="md-form">
     <form class="form-inline md-form mr-auto mb-4">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"  [(ngModel)]="searchProffesionText" [ngModelOptions]="{standalone: true}" >
-      <button class="my-0 waves-light" type="submit" (click)="postProffesions()"> Search </button>
+      <input class="form-control mr-sm-2" id="phrase" type="text" placeholder="Nazwa/Kod zawodu" aria-label="Search"  [(ngModel)]="searchProffesionText" [ngModelOptions]="{standalone: true}" >
+      <button class="my-0 waves-light" type="submit" (click)="postProffesions()"> Wyszukaj </button>
     </form>
   </div>
   <div  class="results" *ngIf="professions">
@@ -18,24 +18,35 @@
         <ng-template matExpansionPanelContent>
           <ul>
             <li>
+              Kod zawodu
+            </li>
+            <li class="li-value">
               {{profession.code}}
             </li>
             <li>
+              Synteza
+            </li>
+            <li class="li-value">
               {{profession.synthesis}}
             </li>
             <li *ngIf="profession.tasks">
+              Zadania zawodowe
+            </li>
+            <li *ngIf="profession.tasks" class="li-value">
               {{profession.tasks}}
             </li>
             <li *ngIf="profession.additionalTasks">
+              Dodatkowe zadania
+            </li>
+            <li *ngIf="profession.additionalTasks" class="li-value">
               {{profession.additionalTasks}}
             </li>
-            <li>
-              <a target="_blank" [routerLink]="['/statystyki/', profession.code]"> Kliknij tutaj, aby zobaczyć informacje nt. zarobków i struktury zatrudnienia w tej grupie zawodowej </a>
-            </li>
           </ul>
+          <a target="_blank" [routerLink]="['/statystyki/', profession.code]"> Kliknij tutaj, aby zobaczyć informacje nt. zarobków i struktury zatrudnienia w tej grupie zawodowej </a>
         </ng-template>
       </mat-expansion-panel>
     </div>
+    <br/>
     <mat-paginator id="paginator"
                     [length]="professions.length"
                     [pageSize]="pageSize"
