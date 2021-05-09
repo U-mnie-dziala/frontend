@@ -14,7 +14,7 @@ import {QuestionHistory} from '../../interfaces/question-history';
 export class BoardUserComponent implements OnInit {
   userHistory: QuizHistory[];
   errMessege: string;
-  publicLink = 'http://localhost:4200/historia/';
+  publicLink = 'https://tiara-przydzialu.netlify.app/historia/';
   uuid: string;
   @Input() userName: string;
   @Input() userId: number;

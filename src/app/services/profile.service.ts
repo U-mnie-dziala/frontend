@@ -10,7 +10,7 @@ export class ProfileService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json'} ),
     responseType: 'text' as 'json'
   };
-  private url = 'http://localhost:8080/api/credentials/';
+  private url = 'https://programowaniezespolowe-app.herokuapp.com/api/credentials/';
 
   constructor(private httpClient: HttpClient) {}
 

@@ -13,6 +13,6 @@ export class StatisticsticsService {
   constructor(private http: HttpClient) { }
 
   getStatistics(groupCode: string): Observable<any>{
-    return this.http.get('http://localhost:8080/salarystatistics/' + groupCode, httpOptions);
+    return this.http.get('https://programowaniezespolowe-app.herokuapp.com/salarystatistics/' + groupCode, httpOptions);
   }
 }
