@@ -15,6 +15,8 @@ export class StatisticsComponent implements OnInit {
   statistics: Statistics;
   error: string;
 
+  militaryGroup = false;
+
   constructor(private route: ActivatedRoute, private statisticsService: StatisticsticsService) {
   }
 
@@ -22,16 +24,23 @@ export class StatisticsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.searchingProffession = params.code;
     });
-    this.statisticsService.getStatistics(this.searchingProffession).subscribe(element => {
-        this.statistics = element;
-        this.loading = false;
-        this.getSuccess = true;
-      },
-      error => {
-        this.error = 'Serwer zwrócił błąd: grupa zawodowa nie istnieje?';
-        this.loading = false;
-        this.getSuccess = false;
-      }
-    );
+    if (this.searchingProffession.startsWith('0')){
+      this.getSuccess = true;
+      this.loading = false;
+      this.militaryGroup = true;
+    }
+    else{
+      this.statisticsService.getStatistics(this.searchingProffession).subscribe(element => {
+          this.statistics = element;
+          this.loading = false;
+          this.getSuccess = true;
+        },
+        error => {
+          this.error = 'Serwer zwrócił błąd: grupa zawodowa nie istnieje?';
+          this.loading = false;
+          this.getSuccess = false;
+        }
+      );
+    }
   }
 }

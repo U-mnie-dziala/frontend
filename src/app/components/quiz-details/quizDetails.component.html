@@ -6,7 +6,7 @@
     <p> Nie znaleziono żadnych dopasowanych grup elementarnych. Możesz rozważyć zwiększenie kwalifikacji. </p>
   </div>
   <div class="results" *ngIf="quiz.questionList.length == 0 && resultsReady == -1">
-    <p> Loading... </p>
+    <p> Ładujemy Twoje wyniki... </p>
   </div>
   <div id="quiz" *ngIf="quiz.questionList.length > 0">
     <div class="question" >
@@ -37,7 +37,8 @@
       Quiz nie został zapisany. <br/>
       Zaloguj się lub zarejestuj, aby zapisać ten quiz automatycznie.
     </div>
-    <p> Twoje grupy elementarne: </p>
+    <h4> Twoje grupy zawodowe </h4>
+    <br/>
     <div class="result" *ngFor = "let result of paginatorData">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -46,21 +47,34 @@
         <ng-template matExpansionPanelContent>
           <ul>
             <li>
+              Kod
+            </li>
+            <li class="li-value">
               {{result.code}}
             </li>
             <li>
+              Synteza
+            </li>
+            <li class="li-value">
               {{result.synthesis}}
             </li>
-            <li>
+            <li *ngIf="result.tasks" >
+              Zadania zawodowe
+            </li>
+            <li *ngIf="result.tasks" class="li-value">
               {{result.tasks}}
             </li>
-            <li>
-              <a target="_blank" [routerLink]="['/wyszukaj/zawody/', result.code]"> Kliknij tutaj, aby zobaczyć listę dostepnych zawodów (w nowej karcie) </a>
-            </li>
           </ul>
+          <div>
+            <a target="_blank" [routerLink]="['/wyszukaj/zawody/', result.code]"> Kliknij tutaj, aby zobaczyć listę dostepnych zawodów (w nowej karcie) </a>
+          </div>
+          <div>
+            <a target="_blank" [routerLink]="['/statystyki/', result.code]"> Kliknij tutaj, aby zobaczyć informacje nt. zarobków i struktury zatrudnienia w tej grupie zawodowej </a>
+          </div>
         </ng-template>
       </mat-expansion-panel>
     </div>
+    <br/>
     <mat-paginator id="paginator"
                    [length]="results.length"
                    [pageSize]="pageSize"

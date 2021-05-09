@@ -4,6 +4,7 @@ import {UserHistoryService} from '../../services/user-history.service';
 import {QuizHistory} from '../../interfaces/quiz-history';
 import {SearchService} from '../../services/search.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {QuestionHistory} from '../../interfaces/question-history';
 
 @Component({
   selector: 'app-board-user',
@@ -69,5 +70,13 @@ export class BoardUserComponent implements OnInit {
 
   showResults(history: QuizHistory): void {
     this.userHistoryService.quiz = history.quiz;
+  }
+
+  parseResponses(questionHistory: QuestionHistory): string {
+    console.log('Rec:' + JSON.stringify(questionHistory));
+    let returnVal = '';
+    returnVal += questionHistory.answersForHistory.forEach(answer => answer.text) + ', ';
+    console.log('ret: ' + returnVal);
+    return returnVal;
   }
 }

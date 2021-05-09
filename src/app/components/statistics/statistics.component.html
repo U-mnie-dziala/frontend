@@ -1,5 +1,14 @@
 <div class="content">
   <h2> Dane o zarobkach i zatrudnieniu </h2>
+  <span *ngIf="militaryGroup">
+    <br/> <br/>
+    Główny Urząd Statystyczny nie publikuje informacji o strukturze zatrudnienia i zarobkach w Służbach Wojskowych.
+    Więcej informacji nt. zawodowej służby wojskowej znajdziesz tutaj:
+    <a href="https://www.wojsko-polskie.pl/uprawnienia-i-swiadczenia-zolnierzy-zawodowych/">
+      https://www.wojsko-polskie.pl/uprawnienia-i-swiadczenia-zolnierzy-zawodowych/
+    </a>
+  </span>
+
   <h4 *ngIf="!loading && getSuccess && statistics" > {{searchingProffession}} &nbsp; &nbsp; {{statistics.professionName}}  </h4>
   <div class="alert alert-danger" role="alert" *ngIf="!loading && !getSuccess" >
     {{error}}

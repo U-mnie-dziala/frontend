@@ -15,25 +15,25 @@
         Quiz z dnia {{history.date |  date:'dd.MM.YYYY HH:mm'}}, o godzinie {{history.date |  date:'HH:mm'}}
       </mat-expansion-panel-header>
       <ng-template matExpansionPanelContent>
-        <input type="button" (click)="showResults(history)" [routerLink]="'../quiz/' + history.uuid" value='Zobacz wyniki' />
-        <mat-expansion-panel>
+        <button class="results" type="button" (click)="showResults(history)" [routerLink]="'../quiz/' + history.uuid">
+          Zobacz wyniki quizu
+        </button>
+        <button class="copy" type="button" ngxClipboard [cbContent]="publicLink + history.uuid" >
+          Kliknij tutaj, aby skopiować link do udostępnienia tego quizu znajomym
+        </button>
+        <mat-expansion-panel class="inner">
           <mat-expansion-panel-header>
             Lista Twoich pytań i odpowiedzi
           </mat-expansion-panel-header>
           <ng-template matExpansionPanelContent>
             <div *ngFor="let question of history.quiz.questionsHistory">
-              {{question.questionId}} -> {{question.answerIds}}
+              <u>
+                {{question.text}}
+              </u>
+              <div *ngFor="let resp of question.answersForHistory">
+                -> {{ resp.text }}
+              </div>
             </div>
-          </ng-template>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            Udostępnij quiz Twoim znajomym
-          </mat-expansion-panel-header>
-          <ng-template matExpansionPanelContent>
-            <button class="btn btn-default" type="button" ngxClipboard [cbContent]="publicLink + history.uuid" >
-              Kliknij, aby skopiować
-            </button>
           </ng-template>
         </mat-expansion-panel>
       </ng-template>
