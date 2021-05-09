@@ -44,6 +44,7 @@ export class QuizDetailsComponent implements OnInit {
     });
     if (this.UUID){
       this.postResults();
+      this.waiting = false;
     }
     else{
       this.getQuiz();

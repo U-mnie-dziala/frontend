@@ -38,6 +38,6 @@ export class AuthService {
   }
 
   resetPasswordFinal(newPassword: string, token: string): Observable<any> {
-    return this.http.post(AUTH_API + 'credentials/resetPassword', {newPassword, token}, httpOptions);
+    return this.http.post(AUTH_API + 'credentials/resetPassword/save', {newPassword, token}, httpOptions);
   }
 }

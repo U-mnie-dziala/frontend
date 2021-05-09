@@ -1,0 +1,78 @@
+<div class="content">
+  <h2> Dane o zarobkach i zatrudnieniu </h2>
+  <span *ngIf="militaryGroup">
+    <br/> <br/>
+    Główny Urząd Statystyczny nie publikuje informacji o strukturze zatrudnienia i zarobkach w Służbach Wojskowych.
+    Więcej informacji nt. zawodowej służby wojskowej znajdziesz tutaj:
+    <a href="https://www.wojsko-polskie.pl/uprawnienia-i-swiadczenia-zolnierzy-zawodowych/">
+      https://www.wojsko-polskie.pl/uprawnienia-i-swiadczenia-zolnierzy-zawodowych/
+    </a>
+  </span>
+
+  <h4 *ngIf="!loading && getSuccess && statistics" > {{searchingProffession}} &nbsp; &nbsp; {{statistics.professionName}}  </h4>
+  <div class="alert alert-danger" role="alert" *ngIf="!loading && !getSuccess" >
+    {{error}}
+  </div>
+  <div class="statistics" *ngIf="!loading && getSuccess && statistics" >
+    <div class="group" *ngFor="let group of statistics.statisticsForGroups">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          {{group.groupCodeId}} &nbsp; &nbsp; {{group.groupCodeName}}
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+          <ul>
+            <li>
+              Liczba zatrudnionych
+            </li>
+            <li class="li-value">
+              {{group.employmentAll}} tysięcy
+            </li>
+            <li>
+              Liczba zatrudnionych mężczyzn
+            </li>
+            <li class="li-value">
+              {{group.employmentMen}} tysięcy
+            </li>
+            <li>
+              Liczba zatrudnionych kobiet
+            </li>
+            <li class="li-value">
+              {{group.employmentWomen}} tysięcy
+            </li>
+            <li>
+              Ilość zatrudnionych osób w stosunku do wszystkich osób pracujących w Polsce
+            </li>
+            <li class="li-value">
+              {{group.percentOfEmploymentAll}}%
+            </li>
+            <li>
+              Ilość zatrudnionych osób w stosunku do wszystkich osób zatrudnionych w tej gałęzi rynku (grupy jednocyfrowej)
+            </li>
+            <li class="li-value">
+              {{group.percentOfEmploymentForGroup1}}%
+            </li>
+            <li>
+              Średnie zarobki w tej grupie
+            </li>
+            <li class="li-value">
+              {{group.salaryAll}} zł/miesiąc
+            </li>
+            <li>
+              Średnie zarobki mężczyzn w tej grupie
+            </li>
+            <li class="li-value">
+              {{group.salaryMen}} zł/miesiąc
+            </li>
+            <li>
+              Średnie zarobki kobiet w tej grupie
+            </li>
+            <li class="li-value">
+              {{group.salaryWomen}} zł/miesiąc
+            </li>
+          </ul>
+        </ng-template>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <div class="lds-ring" *ngIf="loading" ><div></div><div></div><div></div><div></div></div>
+</div>

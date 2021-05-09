@@ -124,6 +124,7 @@ export class LoginComponent implements OnInit {
 
   changePassword(newPassword: string): void {
     this.authService.resetPasswordFinal(newPassword, this.changePasswordCode).subscribe(response => {
+        this.newPassword = false;
         this.changedPassword = true;
         this.changedPasswordOK = true;
       },

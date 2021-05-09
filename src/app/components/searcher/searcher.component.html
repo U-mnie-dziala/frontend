@@ -1,12 +1,12 @@
-<div class="content">
+<div class="content" xmlns="http://www.w3.org/1999/html">
   <h2>Wyszukiwarka grup zawodowych</h2>
   <div class="md-form">
     <form class="form-inline md-form mr-auto mb-4">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"  [(ngModel)]="searchGroupText" [ngModelOptions]="{standalone: true}" >
-      <button class="my-0 waves-light" type="submit" (click)="getGroups()"> Search </button>
+      <input class="form-control mr-sm-2" type="text" id="phrase" placeholder="Nazwa lub kod grupy zawodowej" aria-label="Search"  [(ngModel)]="searchGroupText" [ngModelOptions]="{standalone: true}" >
+      <button class="my-0 waves-light" type="submit" (click)="getGroups()"> Wyszukaj </button>
     </form>
   </div>
-  <div  class="results" *ngIf="groups">
+  <div class="results" *ngIf="groups">
     <div class="result" *ngFor="let group of paginatorData">
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -15,18 +15,28 @@
         <ng-template matExpansionPanelContent>
           <ul>
             <li>
+              Synteza
+            </li>
+            <li class="li-value">
               {{group.synthesis}}
             </li>
-            <li *ngIf="group.tasks">
+            <li *ngIf="group.tasks" >
+              Zadania zawodowe
+            </li>
+            <li *ngIf="group.tasks" class="li-value">
               {{group.tasks}}
             </li>
-            <li>
-              <a target="_blank" [routerLink]="['../zawody/', group.code]"> Kliknij tutaj, aby zobaczyć listę dostepnych zawodów (w nowej karcie) </a>
-            </li>
           </ul>
+          <div>
+            <a target="_blank" [routerLink]="['../zawody/', group.code]"> Kliknij tutaj, aby zobaczyć listę dostepnych zawodów (w nowej karcie) </a>
+          </div>
+          <div>
+            <a target="_blank" [routerLink]="['/statystyki/', group.code]"> Kliknij tutaj, aby zobaczyć informacje nt. zarobków i struktury zatrudnienia w tej grupie zawodowej </a>
+          </div>
         </ng-template>
       </mat-expansion-panel>
     </div>
+    <br/>
     <mat-paginator [length]="groups.length"
                    [pageSize]="pageSize"
                    [pageSizeOptions]="pageSizeOptions"
@@ -34,7 +44,7 @@
     </mat-paginator>
   </div>
   <div  class="results" *ngIf="!groups">
-    Oczekiwanie...
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
   </div>
   <div  class="results" *ngIf="groups && groups.length === 0">
     Lista grup pusta.

@@ -1,4 +1,4 @@
-<div class="content" *ngIf="!resetPassword && !emailSent && !newPassword">
+<div class="content" *ngIf="!resetPassword && !emailSent && !newPassword" xmlns="http://www.w3.org/1999/html">
   <div class="alert alert-success" *ngIf="changedPassword && changedPasswordOK">
     Hasło zmienione pomyślnie. Możesz się teraz zalogować!
   </div>
@@ -92,6 +92,7 @@
   <div class="alert alert-success" *ngIf="correctCode">
     Email z kodem potwierdzającym został wysłany. Wprowadź go poniżej.
   </div>
+  <br/>
   <form>
     <div class="form-group">
       <label for="code">Kod potwierdzający</label>
@@ -102,8 +103,12 @@
 </div>
 <div class="content" *ngIf="newPassword">
   <div class="alert alert-success" *ngIf="correctCode">
-    Kod prawidłowy. Możesz ustaw nowe hasło.
+    Kod prawidłowy. Możesz ustawić nowe hasło.
   </div>
+  <div class="alert alert-danger" role="alert" *ngIf="changedPassword && !changedPasswordOK" >
+    Ustaw inne hasło.
+  </div>
+  <br/>
   <form>
     <div class="form-group">
       <label for="password">Hasło</label>
@@ -128,6 +133,6 @@
         Hasła nie są takie same
       </div>
     </div>
-    <button class="btn btn-primary btn-block" (click)="changePassword(password.value)" [disabled]="password.errors || password2.errors || notequal"> Wyślij e-mail potwierdzający </button>
+    <button class="btn btn-primary btn-block" (click)="changePassword(password.value)" [disabled]="password.errors || password2.errors || notequal"> Zmień hasło </button>
   </form>
 </div>

@@ -8,15 +8,15 @@
     <h1>Tiara Przydziału</h1>
   </a>
   <div id="placeholder"> </div>
-  <a class="search" routerLink="/wyszukaj/grupy">
-    <h5>Wyszukiwarka grup zawodowych</h5>
-  </a>
-  <a class="search" routerLink="/wyszukaj/zawody">
-    <h5>Wyszukiwarka zawodów</h5>
-  </a>
-  <a  *ngIf="isLoggedIn" class="search" routerLink="/historia">
-    <h5>Zapisane quizy</h5>
-  </a>
+  <span class="search" routerLink="/wyszukaj/grupy">
+    <a class="link">Wyszukiwarka grup zawodowych</a>
+  </span>
+  <span class="search" routerLink="/wyszukaj/zawody">
+    <a class="link">Wyszukiwarka zawodów</a>
+  </span>
+  <span class="search" *ngIf="isLoggedIn" class="search" routerLink="/historia">
+    <a class="link">Zapisane quizy</a>
+  </span>
   <a href="/zarejestruj" class="register" *ngIf="!isLoggedIn" routerLink="zarejestruj">Zarejestruj się</a>
   <a href="/zaloguj" class="login" routerLink="zaloguj" *ngIf="!isLoggedIn">Zaloguj się</a>
 
