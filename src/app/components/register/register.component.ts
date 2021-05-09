@@ -28,7 +28,7 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     if (!(this.form.password === this.form.password2)){
       this.notequal = true;
-      console.log('notequal');
+
       return;
     }
     this.notequal = false;
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
 
     this.authService.register(username, email, password).subscribe(
       data => {
-        console.log(data);
+
         this.message = data.message;
         this.isSuccessful = true;
         this.isSignUpFailed = false;

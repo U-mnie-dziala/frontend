@@ -95,7 +95,7 @@ export class QuizDetailsComponent implements OnInit {
 
   sendAnswers(): void {
     this.getUserAnswersIds();
-    console.log('Sendig post...');
+
     this.returned = false;
     this.postQuiz();
     this.userAnswersIds = [];
@@ -144,14 +144,14 @@ export class QuizDetailsComponent implements OnInit {
       this.userHistoryService.saveUserHistory(this.quiz).subscribe(response => {
           this.savingResponse = response;
           this.savingHistorySuccesfull = true;
-          console.log('Fail to save. Provided to userHistory');
+
         },
         err => {
           this.savingResponse = err.error.message;
           this.savingHistorySuccesfull = false;
           this.userHistoryService.quiz = this.quiz;
           this.userHistoryService.saveHistoryFailed = true;
-          console.log('Fail to save. Provided to userHistory');
+
         },
       );
     }

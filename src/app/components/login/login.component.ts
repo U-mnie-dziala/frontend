@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit {
       this.isTokenExpired = true;
     }
     else if (this.tokenStorage.getToken()) {
-      console.log(this.tokenStorage.getUser());
       this.isLoggedIn = true;
       this.roles = this.tokenStorage.getUser().roles;
     }

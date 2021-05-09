@@ -38,7 +38,7 @@ export class BoardUserComponent implements OnInit {
   private getUserHistoryByUUID(): void {
     this.userHistoryService.getUserHistoryByUUID(this.uuid).subscribe(
       data => {
-        console.log(data);
+
         this.userHistory = [];
         this.userHistory.push(JSON.parse(data));
         this.userHistory[0].quiz = JSON.parse(JSON.parse(data).quiz);
@@ -73,10 +73,10 @@ export class BoardUserComponent implements OnInit {
   }
 
   parseResponses(questionHistory: QuestionHistory): string {
-    console.log('Rec:' + JSON.stringify(questionHistory));
+
     let returnVal = '';
     returnVal += questionHistory.answersForHistory.forEach(answer => answer.text) + ', ';
-    console.log('ret: ' + returnVal);
+
     return returnVal;
   }
 }

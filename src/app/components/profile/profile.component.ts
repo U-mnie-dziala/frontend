@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
       this.errMess = 'Wpisz obecne hasło, aby zmienić adres e-mail.';
       return;
     }
-    console.log(this.newEmail + '/' + this.currentPass);
+
     this.profileService.changeEmail(this.user.id, this.currentPass, this.newEmail).subscribe(resp => {
           this.success = true;
           this.error = false;
