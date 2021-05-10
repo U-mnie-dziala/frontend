@@ -6,7 +6,7 @@
   <div class="md-form">
     <form class="form-inline md-form mr-auto mb-4">
       <input class="form-control mr-sm-2" id="phrase" type="text" placeholder="Nazwa/Kod zawodu" aria-label="Search"  [(ngModel)]="searchProffesionText" [ngModelOptions]="{standalone: true}" >
-      <button class="my-0 waves-light" type="submit" (click)="postProffesions()"> Wyszukaj </button>
+      <button class="my-0 waves-light" type="submit" (click)="postProffesions()"> Szukaj </button>
     </form>
   </div>
   <div  class="results" *ngIf="professions">
