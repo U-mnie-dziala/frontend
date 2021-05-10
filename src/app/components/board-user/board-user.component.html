@@ -12,7 +12,7 @@
   <div class="result" *ngFor = "let history of userHistory">
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        Quiz z dnia {{history.date |  date:'dd.MM.YYYY HH:mm'}}, o godzinie {{history.date |  date:'HH:mm'}}
+        Quiz z dnia {{history.date |  date:'dd.MM.YYYY, HH:mm'}}
       </mat-expansion-panel-header>
       <ng-template matExpansionPanelContent>
         <button class="results" type="button" (click)="showResults(history)" [routerLink]="'../quiz/' + history.uuid">
