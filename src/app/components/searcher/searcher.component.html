@@ -3,7 +3,7 @@
   <div class="md-form">
     <form class="form-inline md-form mr-auto mb-4">
       <input class="form-control mr-sm-2" type="text" id="phrase" placeholder="Nazwa lub kod grupy zawodowej" aria-label="Search"  [(ngModel)]="searchGroupText" [ngModelOptions]="{standalone: true}" >
-      <button class="my-0 waves-light" type="submit" (click)="getGroups()"> Wyszukaj </button>
+      <button class="my-0 waves-light" type="submit" (click)="getGroups()"> Szukaj </button>
     </form>
   </div>
   <div class="results" *ngIf="groups">
@@ -37,11 +37,13 @@
       </mat-expansion-panel>
     </div>
     <br/>
-    <mat-paginator [length]="groups.length"
-                   [pageSize]="pageSize"
-                   [pageSizeOptions]="pageSizeOptions"
-                   (page)="pageEvent = paginateData($event)">
-    </mat-paginator>
+    <div>
+      <mat-paginator [length]="groups.length"
+                     [pageSize]="pageSize"
+                     [pageSizeOptions]="pageSizeOptions"
+                     (page)="pageEvent = paginateData($event)">
+      </mat-paginator>
+    </div>
   </div>
   <div  class="results" *ngIf="!groups">
     <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
