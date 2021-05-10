@@ -10,8 +10,8 @@
   column-gap: 20px;
   row-gap: 0;
   grid-template-areas:
-    "slogan . button ."
-    "content content content content ";
+    "slogan slogan . button ."
+    "content content content content content ";
 }
 
 .slogan {
@@ -66,6 +66,10 @@ a:hover {
 a:hover {
 }
 
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
 
 footer {
   margin-top: 8px;
