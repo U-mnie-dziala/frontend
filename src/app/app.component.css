@@ -4,6 +4,57 @@ h1{
   line-height: .8;
 }
 
+.toolbarresponsive h1 {
+  margin: 0;
+}
+
+.toolbarresponsive {
+  display: block;
+  background-color: #f1f1f1;
+}
+
+.toolbarresponsive a:hover {
+  background-color: #ddd;
+}
+
+.toolbarresponsive span:hover {
+  background-color: #ddd;
+}
+
+.toolbarresponsive .placeholder {
+  background-color: rgba(255, 255, 255,.8);
+}
+
+.toolbarresponsive a {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0;
+  background-color: inherit;
+  background: inherit;
+  clip-path: none;
+  margin: 0 0 1%;
+}
+
+.toolbarresponsive span {
+  display: block;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 1%;
+  background-color: inherit;
+  background: inherit;
+}
+
+
+.toolbarresponsive span a {
+  display: block;
+
+}
+
+.toolbarresponsive a:first-child{
+  display: none;
+}
 
 .toolbar {
   position: fixed;
@@ -22,6 +73,16 @@ h1{
   margin: 0 16px;
 }
 
+.toolbar a.icon { display: none}
+
+@media screen and (max-width: 800px) {
+  .toolbar a:not(:nth-child(1)):not(:nth-child(2)):not(:last-child) {display: none;}
+
+  .toolbar span { display: none}
+
+  .toolbar a.icon{ display: block}
+}
+
 h1 {
   color: black;
 }
@@ -32,7 +93,7 @@ a, a:visited, a:hover {
   text-decoration: none;
 }
 
-#placeholder {
+.toolbar .placeholder {
   flex-grow: 1;
 }
 

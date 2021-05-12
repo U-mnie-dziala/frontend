@@ -1,13 +1,13 @@
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
+<div [className]="toolbarVariable">
   <a routerLink="/" routerLinkActive="active">
     <img alt="Logo" src="favicon.ico" ng-href="#" />
   </a>
-  <a routerLink="/">
+  <a routerLink="/" (click)="myFunction()">
     <h1>Tiara Przydziału</h1>
   </a>
-  <div id="placeholder"> </div>
+  <div class="placeholder"> </div>
   <span class="search" routerLink="/wyszukaj/grupy">
     <a class="link">Wyszukiwarka grup zawodowych</a>
   </span>
@@ -28,6 +28,9 @@
       <a href class="nav-link" id="logout" (click)="logout()">Wyloguj się</a>
     </li>
   </ul>
+  <a href="javascript:void(0);" class="icon" (click)="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
 
 

@@ -15,6 +15,7 @@ export class AppComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   userId?: number;
+  toolbarVariable = 'toolbar';
   title = 'Tiara Przydziału';
 
   constructor(public router: Router, private tokenStorageService: TokenStorageService, private userHistoryService: UserHistoryService) { }
@@ -42,4 +43,14 @@ export class AppComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
+  myFunction(): void {
+    if (this.toolbarVariable === 'toolbar'){
+      this.toolbarVariable = 'toolbarresponsive';
+    }
+    else {
+      this.toolbarVariable = 'toolbar';
+    }
+  }
+
 }
