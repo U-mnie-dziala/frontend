@@ -20,6 +20,13 @@
   <span class="search" *ngIf="isLoggedIn" class="search" routerLink="/historia">
     <a class="link">Zapisane quizy</a>
   </span>
+  <span class="search" *ngIf="toolbarResponsive && isLoggedIn" class="search" routerLink="/profile">
+    <a class="link">Profil</a>
+  </span>
+  <span class="search" *ngIf="toolbarResponsive && isLoggedIn" class="search" routerLink="/">
+    <a class="link" (click)="logout()">Wyloguj się</a>
+  </span>
+
   <a href="/zarejestruj" [className]="registerVariable" *ngIf="!isLoggedIn" routerLink="zarejestruj">Zarejestruj się</a>
   <a href="/zaloguj" [className]="loginVariable" routerLink="zaloguj" *ngIf="!isLoggedIn">Zaloguj się</a>
 

@@ -135,6 +135,14 @@ h1{
   margin-right: 10px}
 }
 
+@media screen and (max-width: 300px) {
+  .toolbar a { display: none }
+  .toolbar span { display: none}
+
+  .toolbar a.icon{ display: block;
+    margin-right: 10px}
+}
+
 h1 {
   color: black;
 }
@@ -274,7 +282,11 @@ a, a:visited, a:hover {
   background: -webkit-linear-gradient(left, #ffc9c9 0%, #ffadad 99%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #ffc9c9 0%, #ffadad 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc9c9', endColorstr='#ffadad',GradientType=1 ); /* IE6-9 */
-
+}
+@media screen and (max-width: 800px) {
+  .navbar-nav {
+    display: none;
+  }
 }
 
 .content {
