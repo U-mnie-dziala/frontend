@@ -11,22 +11,48 @@ button {
   padding: .3em 1.5em;
 }
 
-/*#phrase {*/
-/*  width: 50%;*/
-/*  background: none;*/
-/*  border: black solid 1px;*/
-/*}*/
+.buttons {
+  width: 100%;
+  margin: 1em;
+}
 
-/*button {*/
-/*  border: black solid 1px;*/
-/*  padding: .4em 1.5em;*/
-/*  background: none;*/
-/*  clip-path: inset(0 round .3em);*/
-/*  border-radius: .3em;*/
-/*}*/
-/*button:hover{*/
-/*  background: rgba(253, 253, 133,.7);*/
-/*}*/
+#phrase {
+  width: 50%;
+  background: none;
+  border: black solid 1px;
+}
+
+button {
+  border: black solid 1px;
+  padding: .4em 1.5em;
+  background: none;
+  clip-path: inset(0 round .3em);
+  border-radius: .3em;
+}
+button:hover{
+  background: rgba(253, 253, 133,.7);
+}
+
+.links {
+  float: right;
+  margin: 0 1em 1em 3em;
+  text-decoration: none;
+
+  color: black;
+  border: black solid 1px;
+  padding: .4em 1.5em;
+  background: none;
+  clip-path: inset(0 round .3em);
+  border-radius: .3em;
+}
+
+.links:active {
+  border-top: 1px solid #333333;
+  border-right: 1px solid #EEEEEE;
+  border-bottom: 1px solid #EEEEEE;
+  border-left: 1px solid #333333;
+}
+
 
 /*button {*/
 /*  text-align: center;*/
@@ -57,7 +83,7 @@ ul {
 li {
   flex: 0 0 15%;
   border: 1px solid black;
-  background: rgba(100, 255, 0, .1);
+  background: rgba(152, 250, 183, 0.1);
   padding: .5em 1em;
   display: flex;
   align-items: flex-start;
@@ -83,7 +109,7 @@ li {
 
 ::ng-deep .cdk-overlay-pane {
   background-color: #c4deff;
-  border: 1px solid rgba(128, 128, 128);
+  border: 1px solid rgb(128, 128, 128);
   position: absolute;
   pointer-events: auto;
   box-sizing: border-box;
