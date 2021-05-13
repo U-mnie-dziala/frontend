@@ -3,43 +3,50 @@
   height: 100%;
 }
 
+.md-form {
+  margin-top: 2em;
+}
+
 #phrase {
-  width: 50%;
+  width: 88%;
+  background: rgba(255,255,255,0.3);
+  border: black solid 1px;
 }
 
 button {
-  padding: .3em 1.5em;
+  background: rgba(255,255,255,0.3);
+  border: black solid 1px;
+  padding: .4em 1.5em;
+  background: none;
+  clip-path: inset(0 round .3em);
+  border-radius: .3em;
+}
+button:hover{
+  background: rgba(253, 253, 133,.6);
 }
 
-/*#phrase {*/
-/*  width: 50%;*/
-/*  background: none;*/
-/*  border: black solid 1px;*/
-/*}*/
+.buttons {
+  width: 100%;
+  margin: 1em;
+}
 
-/*button {*/
-/*  border: black solid 1px;*/
-/*  padding: .4em 1.5em;*/
-/*  background: none;*/
-/*  clip-path: inset(0 round .3em);*/
-/*  border-radius: .3em;*/
-/*}*/
-/*button:hover{*/
-/*  background: rgba(253, 253, 133,.7);*/
-/*}*/
+.links {
+  background: rgba(255,255,255,0.3);
+  float: right;
+  margin: 0 1em 1em 3em;
+  text-decoration: none;
 
-/*button {*/
-/*  text-align: center;*/
-/*  background: #59caff;*/
-/*  padding: .5em 1.5em;*/
-/*  clip-path: inset(0 round 2em);*/
-/*  border: none;*/
-/*}*/
+  color: black;
+  border: black solid 1px;
+  padding: .4em 1.5em;
+  background: none;
+  clip-path: inset(0 round .3em);
+  border-radius: .3em;
+}
 
-/*button:hover {*/
-/*  background: #0099ff;*/
-/*}*/
-
+.links:hover {
+  background: rgba(253, 253, 133,.6);
+}
 
 .results {
   height: auto;
@@ -57,7 +64,7 @@ ul {
 li {
   flex: 0 0 15%;
   border: 1px solid black;
-  background: rgba(100, 255, 0, .1);
+  background: rgba(255,255,255,0.3);
   padding: .5em 1em;
   display: flex;
   align-items: flex-start;
@@ -66,6 +73,18 @@ li {
 .li-value {
   flex: 0 0 85%;
 }
+
+/*button {*/
+/*  text-align: center;*/
+/*  background: #59caff;*/
+/*  padding: .5em 1.5em;*/
+/*  clip-path: inset(0 round 2em);*/
+/*  border: none;*/
+/*}*/
+
+/*button:hover {*/
+/*  background: #0099ff;*/
+/*}*/
 
 ::ng-deep .cdk-overlay-container,
 ::ng-deep .cdk-global-overlay-wrapper {
@@ -83,7 +102,7 @@ li {
 
 ::ng-deep .cdk-overlay-pane {
   background-color: #c4deff;
-  border: 1px solid rgba(128, 128, 128);
+  border: 1px solid rgb(128, 128, 128);
   position: absolute;
   pointer-events: auto;
   box-sizing: border-box;

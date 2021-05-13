@@ -1,9 +1,6 @@
 <div class="content" *ngIf="user; else loggedOut">
-  <div class="alert alert-danger" role="alert" *ngIf="error" >
-    {{errMess}}
-  </div>
-  <div class="alert alert-success" *ngIf="success">
-    {{messege}} Zmiany na profilu będą widoczne po ponownym zalogowaniu
+  <div class="alert" role="alert" *ngIf="error || success" >
+    {{errMess}} {{messege}}
   </div>
   <h3 id="name">
     {{ user.username }}
@@ -15,17 +12,17 @@
     <input id="new-email" type="text" placeholder="Nowy adres e-mail" #input (blur)="newEmailEvent(input.value);" />
     <label id="pass-label"> Potwierdź hasło </label>
     <input id="pass" type="password" placeholder="Hasło" #input2 (blur)="currentPassEvent(input2.value)"/>
-    <input id="accept-email" type="button" value="Wyślij" (click)="changeEmail()" />
+    <input class="accept-button"  id="accept-email" type="button" value="Wyślij" (click)="changeEmail()" />
     <strong id="label-pass"> Zmiana hasła </strong>
     <label id="old-pass-label"> Obecne hasło </label>
-    <input id="old-pass" type="password"  placeholder="Hasło" #input3 (blur)="currentPassEvent(input3.value)"/>
+    <input  id="old-pass" type="password"  placeholder="Hasło" #input3 (blur)="currentPassEvent(input3.value)"/>
     <label id="new-pass-label"> Nowe hasło </label>
     <input id="new-pass" type="password" placeholder="Nowe hasło" #input4 (blur)="newPassEvent(input4.value)" />
-    <input id="accept-pass" type="button" value="Wyślij" (click)="changePass()"/>
+    <input class="accept-button"  id="accept-pass" type="button" value="Wyślij" (click)="changePass()"/>
     <strong id="delete-acc"> Usuwanie konta </strong>
     <label id="pass-label-delete"> Potwierdź hasło </label>
     <input id="pass-delete" type="password" placeholder="Hasło" #input5 (blur)="currentPassEvent(input5.value)"/>
-    <input id="accept-delete" type="button" value="Usuń konto" (click)="deleteAccount()"  />
+    <input class="accept-button"  id="accept-delete" type="button" value="Usuń konto" (click)="deleteAccount()"  />
   </div>
 </div>
 

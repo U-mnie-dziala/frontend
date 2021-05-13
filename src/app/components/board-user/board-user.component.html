@@ -19,13 +19,13 @@
           Zobacz wyniki quizu
         </button>
         <button class="copy" type="button" ngxClipboard [cbContent]="publicLink + history.uuid" >
-          Kliknij tutaj, aby skopiować link do udostępnienia tego quizu znajomym
+          Kliknij tutaj, aby skopiować link publiczny do tego quizu
         </button>
         <mat-expansion-panel class="inner">
           <mat-expansion-panel-header>
             Lista Twoich pytań i odpowiedzi
           </mat-expansion-panel-header>
-          <ng-template matExpansionPanelContent>
+          <ng-template matExpansionPanelContent >
             <div *ngFor="let question of history.quiz.questionsHistory">
               <u>
                 {{question.text}}

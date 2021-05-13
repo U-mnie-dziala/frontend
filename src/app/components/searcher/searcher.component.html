@@ -27,11 +27,9 @@
               {{group.tasks}}
             </li>
           </ul>
-          <div>
-            <a target="_blank" [routerLink]="['../zawody/', group.code]"> Kliknij tutaj, aby zobaczyć listę dostepnych zawodów (w nowej karcie) </a>
-          </div>
-          <div>
-            <a target="_blank" [routerLink]="['/statystyki/', group.code]"> Kliknij tutaj, aby zobaczyć informacje nt. zarobków i struktury zatrudnienia w tej grupie zawodowej </a>
+          <div class="buttons">
+            <a class="links" target="_blank" [routerLink]="['../zawody/', group.code]"> Lista dostepnych zawodów (w nowej karcie) </a>
+            <a class="links" target="_blank" [routerLink]="['/statystyki/', group.code]"> Zarobki i struktura zatrudnienia (w nowej karcie) </a>
           </div>
         </ng-template>
       </mat-expansion-panel>
