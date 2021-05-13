@@ -5,70 +5,62 @@
 
 .letter {
   display: inline-block;
-  background: white;
-  margin: 0 .5% 1% .5%;
-  padding: 0 .35em 0 .35em;
+  background: none;
+  margin: 1em .5em .75em .3em;
+  padding: 0 .4em 0 .4em;
+  border: 1px solid black
 }
 
 .letter:hover {
-  background: #ffff82;
+  background: rgba(253, 253, 133,.6);
   cursor: pointer;
 }
 
 #phrase {
-  width: 50%;
+  width: 88%;
+  background: rgba(255,255,255,0.3);
+  border: black solid 1px;
 }
 
+button {
+  background: rgba(255,255,255,0.3);
+  border: black solid 1px;
+  padding: .4em 1.5em;
+  background: none;
+  clip-path: inset(0 round .3em);
+  border-radius: .3em;
+}
+
+button:hover{
+  background: rgba(253, 253, 133,.6);
+}
+
+.buttons {
+  width: 100%;
+  margin: 1em;
+}
 
 .links {
+  background: rgba(255,255,255,0.3);
   float: right;
-  margin: 1em 0 .5em 3em;
+  margin: 0 0 1em 3em;
   text-decoration: none;
-  background: rgba(255, 255, 0, 0.4);
+
   color: black;
-  padding: .5em 1em .5em 1em;
-  border-top: 1px solid #CCCCCC;
-  border-right: 1px solid #333333;
-  border-bottom: 1px solid #333333;
-  border-left: 1px solid #CCCCCC;
+  border: black solid 1px;
+  padding: .4em 1.5em;
+  background: none;
+  clip-path: inset(0 round .3em);
+  border-radius: .3em;
 }
 
-.links:active {
-  border-top: 1px solid #333333;
-  border-right: 1px solid #EEEEEE;
-  border-bottom: 1px solid #EEEEEE;
-  border-left: 1px solid #333333;
+.links:hover {
+  background: rgba(253, 253, 133,.6);
 }
 
-/*#phrase {*/
-/*  width: 50%;*/
-/*  background: none;*/
-/*  border: black solid 1px;*/
-/*}*/
-
-/*button {*/
-/*  border: black solid 1px;*/
-/*  padding: .4em 1.5em;*/
-/*  background: none;*/
-/*  clip-path: inset(0 round .3em);*/
-/*  border-radius: .3em;*/
-/*}*/
-/*button:hover{*/
-/*  background: rgba(253, 253, 133,.7);*/
-/*}*/
-
-/*button {*/
-/*  text-align: center;*/
-/*  background: #59caff;*/
-/*  padding: .5em 1.5em;*/
-/*  clip-path: inset(0 round 2em);*/
-/*  border: none;*/
-/*}*/
-
-/*button:hover {*/
-/*  background: #0099ff;*/
-/*}*/
-
+.results {
+  height: auto;
+}
 
 ul {
   margin-top: 1em;
@@ -82,7 +74,7 @@ ul {
 li {
   flex: 0 0 15%;
   border: 1px solid black;
-  background: rgba(100, 255, 0, .1);
+  background: rgba(255,255,255,0.3);
   padding: .5em 1em;
   display: flex;
   align-items: flex-start;
@@ -91,7 +83,6 @@ li {
 .li-value {
   flex: 0 0 85%;
 }
-
 
 ::ng-deep .cdk-overlay-container,
 ::ng-deep .cdk-global-overlay-wrapper {

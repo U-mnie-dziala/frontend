@@ -7,6 +7,11 @@
   height: 100%;
 }
 
+.alert {
+  background: #f8f895;
+  border: 1px solid #ffa406;
+}
+
 #forms {
   display: grid;
   width: 50%;
@@ -87,4 +92,8 @@
 #forms #accept-delete {
   display: grid;
   grid-area: accept-delete;
+}
+
+.accept-button {
+  margin-left: 1em;
 }

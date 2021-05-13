@@ -3,26 +3,18 @@
   height: 100%;
 }
 
-#phrase {
-  width: 50%;
-}
-
-button {
-  padding: .3em 1.5em;
-}
-
-.buttons {
-  width: 100%;
-  margin: 1em;
+.md-form {
+  margin-top: 2em;
 }
 
 #phrase {
-  width: 50%;
-  background: none;
+  width: 88%;
+  background: rgba(255,255,255,0.3);
   border: black solid 1px;
 }
 
 button {
+  background: rgba(255,255,255,0.3);
   border: black solid 1px;
   padding: .4em 1.5em;
   background: none;
@@ -30,10 +22,16 @@ button {
   border-radius: .3em;
 }
 button:hover{
-  background: rgba(253, 253, 133,.7);
+  background: rgba(253, 253, 133,.6);
+}
+
+.buttons {
+  width: 100%;
+  margin: 1em;
 }
 
 .links {
+  background: rgba(255,255,255,0.3);
   float: right;
   margin: 0 1em 1em 3em;
   text-decoration: none;
@@ -46,26 +44,9 @@ button:hover{
   border-radius: .3em;
 }
 
-.links:active {
-  border-top: 1px solid #333333;
-  border-right: 1px solid #EEEEEE;
-  border-bottom: 1px solid #EEEEEE;
-  border-left: 1px solid #333333;
+.links:hover {
+  background: rgba(253, 253, 133,.6);
 }
-
-
-/*button {*/
-/*  text-align: center;*/
-/*  background: #59caff;*/
-/*  padding: .5em 1.5em;*/
-/*  clip-path: inset(0 round 2em);*/
-/*  border: none;*/
-/*}*/
-
-/*button:hover {*/
-/*  background: #0099ff;*/
-/*}*/
-
 
 .results {
   height: auto;
@@ -83,7 +64,7 @@ ul {
 li {
   flex: 0 0 15%;
   border: 1px solid black;
-  background: rgba(152, 250, 183, 0.1);
+  background: rgba(255,255,255,0.3);
   padding: .5em 1em;
   display: flex;
   align-items: flex-start;
@@ -92,6 +73,18 @@ li {
 .li-value {
   flex: 0 0 85%;
 }
+
+/*button {*/
+/*  text-align: center;*/
+/*  background: #59caff;*/
+/*  padding: .5em 1.5em;*/
+/*  clip-path: inset(0 round 2em);*/
+/*  border: none;*/
+/*}*/
+
+/*button:hover {*/
+/*  background: #0099ff;*/
+/*}*/
 
 ::ng-deep .cdk-overlay-container,
 ::ng-deep .cdk-global-overlay-wrapper {

@@ -16,7 +16,6 @@
           {{profession.name}}
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent>
-          <a class="links" target="_blank" [routerLink]="['/statystyki/', profession.code]"> Kliknij tutaj, aby zobaczyć informacje nt. zarobków i struktury zatrudnienia w tej grupie zawodowej </a>
           <ul>
             <li>
               Kod zawodu
@@ -43,6 +42,7 @@
               {{profession.additionalTasks}}
             </li>
           </ul>
+          <a class="links" target="_blank" [routerLink]="['/statystyki/', profession.code]"> Kliknij tutaj, aby zobaczyć informacje nt. zarobków i struktury zatrudnienia w tej grupie zawodowej </a>
         </ng-template>
       </mat-expansion-panel>
     </div>
