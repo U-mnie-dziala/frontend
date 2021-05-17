@@ -379,3 +379,8 @@ svg {
   to {transform: translateX(-100%);}
 }
 
+.watermark {
+  position: absolute;
+  bottom: 0;
+  opacity: 0.3;
+}
