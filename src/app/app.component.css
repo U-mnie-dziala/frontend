@@ -54,7 +54,7 @@ h1{
 
 .logoResponsive h1 {
   float: left;
-  font-size: 64px;
+  vertical-align: middle;
 }
 
 .toolbarresponsive {
@@ -133,6 +133,24 @@ h1{
 
   .toolbar a.icon{ display: block;
   margin-right: 10px}
+}
+
+@media screen and (max-width: 400px) {
+  .toolbarresponsive h1 {
+    font-size: 36px;
+  }
+}
+
+@media screen and (max-width: 324px) {
+  .toolbarresponsive h1 {
+    font-size: 25px;
+  }
+}
+
+@media screen and (max-width: 250px) {
+  .toolbarresponsive h1{
+    display: none;
+  }
 }
 
 @media screen and (max-width: 300px) {
