@@ -1,8 +1,110 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 
 h1{
   line-height: .8;
 }
+
+.toolbarresponsive h1 {
+  margin: 0;
+}
+
+.logoResponsive {
+  height: 64px;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  padding: 10px;
+}
+
+.logoresponsive:hover {
+  font-weight: normal;
+}
+
+.logoresponsive:before, .logoresponsive:after{
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  transition: all 0.3s ease;
+}
+.logoresponsive:hover:before, .logoresponsive:hover:after{
+  width: 102%;
+  height: 102%;
+  transition: all 0.3s ease;
+}
+.logoresponsive:hover:before{
+  top: -2.5%;
+  left: -1%;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.logoresponsive:hover:after{
+  bottom: -2.5%;
+  right: -1%;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.logoResponsive img {
+  float: left;
+}
+
+.logoResponsive h1 {
+  float: left;
+  font-size: 64px;
+}
+
+.toolbarresponsive {
+  display: block;
+  background-color: #f1f1f1;
+}
+
+.toolbarresponsive a:hover {
+  background-color: #ddd;
+}
+
+.toolbarresponsive span:hover {
+  background-color: #ddd;
+}
+
+.toolbarresponsive .placeholder {
+  background-color: rgba(255, 255, 255,.8);
+}
+
+.toolbarresponsive a {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0;
+  background-color: inherit;
+  background: inherit;
+  clip-path: none;
+  margin: 0 0 1%;
+}
+
+.toolbarresponsive span {
+  display: block;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 1%;
+  background-color: inherit;
+  background: inherit;
+}
+
+
+.toolbarresponsive span a {
+  display: block;
+
+}
+
+.toolbarresponsive a:first-child{
+  display: none;
+}
+
 
 
 .toolbar {
@@ -22,6 +124,25 @@ h1{
   margin: 0 16px;
 }
 
+.toolbar a.icon { display: none}
+
+@media screen and (max-width: 800px) {
+  .toolbar a:not(:nth-child(1)):not(:nth-child(2)):not(:last-child) {display: none;}
+
+  .toolbar span { display: none}
+
+  .toolbar a.icon{ display: block;
+  margin-right: 10px}
+}
+
+@media screen and (max-width: 300px) {
+  .toolbar a { display: none }
+  .toolbar span { display: none}
+
+  .toolbar a.icon{ display: block;
+    margin-right: 10px}
+}
+
 h1 {
   color: black;
 }
@@ -32,7 +153,7 @@ a, a:visited, a:hover {
   text-decoration: none;
 }
 
-#placeholder {
+.toolbar .placeholder {
   flex-grow: 1;
 }
 
@@ -68,12 +189,31 @@ a, a:visited, a:hover {
   transition: all 0.3s ease;
 }
 .link:hover:before{
+   top: -2.5%;
+   left: -1%;
+   border-top: 1px solid black;
+   border-left: 1px solid black;
+ }
+.link:hover:after{
+  bottom: -2.5%;
+  right: -1%;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.toolbarresponsive a:hover:before, a:hover:after{
+  width: 102%;
+  height: 102%;
+  transition: all 0.3s ease;
+}
+
+.toolbarresponsive a:hover:before{
   top: -2.5%;
   left: -1%;
   border-top: 1px solid black;
   border-left: 1px solid black;
 }
-.link:hover:after{
+.toolbarresponsive a:hover:after{
   bottom: -2.5%;
   right: -1%;
   border-bottom: 1px solid black;
@@ -142,7 +282,11 @@ a, a:visited, a:hover {
   background: -webkit-linear-gradient(left, #ffc9c9 0%, #ffadad 99%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #ffc9c9 0%, #ffadad 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffc9c9', endColorstr='#ffadad',GradientType=1 ); /* IE6-9 */
-
+}
+@media screen and (max-width: 800px) {
+  .navbar-nav {
+    display: none;
+  }
 }
 
 .content {

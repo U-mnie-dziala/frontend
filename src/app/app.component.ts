@@ -15,6 +15,10 @@ export class AppComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
   userId?: number;
+  toolbarVariable = 'toolbar';
+  registerVariable = 'register';
+  loginVariable = 'login';
+  toolbarResponsive = false;
   title = 'Tiara Przydziału';
 
   constructor(public router: Router, private tokenStorageService: TokenStorageService, private userHistoryService: UserHistoryService) { }
@@ -42,4 +46,29 @@ export class AppComponent implements OnInit {
     this.tokenStorageService.signOut();
     window.location.reload();
   }
+
+  myFunction(): void {
+    if (this.toolbarVariable === 'toolbar'){
+      this.toolbarVariable = 'toolbarresponsive';
+      this.toolbarResponsive = true;
+    }
+    else {
+      this.toolbarVariable = 'toolbar';
+      this.toolbarResponsive = false;
+    }
+    if (this.loginVariable === 'login'){
+      this.loginVariable = 'link';
+    }
+    else {
+      this.loginVariable = 'login';
+    }
+    if (this.registerVariable === 'register'){
+      this.registerVariable = 'link';
+    }
+    else {
+      this.registerVariable = 'login';
+    }
+
+  }
+
 }

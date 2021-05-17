@@ -1,13 +1,16 @@
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Toolbar -->
-<div class="toolbar" role="banner">
+<div [className]="toolbarVariable">
   <a routerLink="/" routerLinkActive="active">
     <img alt="Logo" src="favicon.ico" ng-href="#" />
   </a>
-  <a routerLink="/">
+  <a routerLink="/" *ngIf="!toolbarResponsive">
     <h1>Tiara Przydziału</h1>
   </a>
-  <div id="placeholder"> </div>
+  <a class="logoResponsive" *ngIf="toolbarResponsive" routerLink="/">
+    <img alt="Logo" src="favicon.ico" ng-href="#" /> <h1>Tiara Przydziału</h1>
+  </a>
+  <div class="placeholder"> </div>
   <span class="search" routerLink="/wyszukaj/grupy">
     <a class="link">Wyszukiwarka grup zawodowych</a>
   </span>
@@ -17,8 +20,15 @@
   <span class="search" *ngIf="isLoggedIn" class="search" routerLink="/historia">
     <a class="link">Zapisane quizy</a>
   </span>
-  <a href="/zarejestruj" class="register" *ngIf="!isLoggedIn" routerLink="zarejestruj">Zarejestruj się</a>
-  <a href="/zaloguj" class="login" routerLink="zaloguj" *ngIf="!isLoggedIn">Zaloguj się</a>
+  <span class="search" *ngIf="toolbarResponsive && isLoggedIn" class="search" routerLink="/profile">
+    <a class="link">Profil</a>
+  </span>
+  <span class="search" *ngIf="toolbarResponsive && isLoggedIn" class="search" routerLink="/">
+    <a class="link" (click)="logout()">Wyloguj się</a>
+  </span>
+
+  <a href="/zarejestruj" [className]="registerVariable" *ngIf="!isLoggedIn" routerLink="zarejestruj">Zarejestruj się</a>
+  <a href="/zaloguj" [className]="loginVariable" routerLink="zaloguj" *ngIf="!isLoggedIn">Zaloguj się</a>
 
   <ul class="navbar-nav ml-auto" id="accountNav" *ngIf="isLoggedIn">
     <li class="nav-item">
@@ -28,6 +38,9 @@
       <a href class="nav-link" id="logout" (click)="logout()">Wyloguj się</a>
     </li>
   </ul>
+  <a href="javascript:void(0);" class="icon" (click)="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
 
 
