@@ -20,58 +20,102 @@
           {{group.groupCodeId}} &nbsp; &nbsp; {{group.groupCodeName}}
         </mat-expansion-panel-header>
         <ng-template matExpansionPanelContent>
-          <ul>
-            <li>
+          <ul class="table">
+            <li class="name">
               Liczba zatrudnionych
             </li>
-            <li class="li-value">
+            <li class="name li-value">
               {{group.employmentAll}} tysięcy
             </li>
-            <li>
+            <li class="name">
               Liczba zatrudnionych mężczyzn
             </li>
-            <li class="li-value">
+            <li class="name li-value">
               {{group.employmentMen}} tysięcy
             </li>
-            <li>
+            <li class="name">
               Liczba zatrudnionych kobiet
             </li>
-            <li class="li-value">
+            <li class="name li-value">
               {{group.employmentWomen}} tysięcy
             </li>
-            <li>
+            <li class="name">
               Ilość zatrudnionych osób w stosunku do wszystkich osób pracujących w Polsce
             </li>
-            <li class="li-value">
+            <li class="name li-value">
               {{group.percentOfEmploymentAll}}%
             </li>
-            <li>
+            <li class="name">
               Ilość zatrudnionych osób w stosunku do wszystkich osób zatrudnionych w tej gałęzi rynku (grupy jednocyfrowej)
             </li>
-            <li class="li-value">
+            <li class="name li-value">
               {{group.percentOfEmploymentForGroup1}}%
             </li>
-            <li>
-              Średnie zarobki w tej grupie
+            <li class="name">
+              Średnie zarobki brutto w tej grupie
             </li>
-            <li class="li-value">
+            <li class="name li-value">
               {{group.salaryAll}} zł/miesiąc
             </li>
-            <li>
-              Średnie zarobki mężczyzn w tej grupie
+            <li class="name">
+              Średnie zarobki brutto mężczyzn w tej grupie
             </li>
-            <li class="li-value">
+            <li class="name li-value">
               {{group.salaryMen}} zł/miesiąc
             </li>
-            <li>
-              Średnie zarobki kobiet w tej grupie
+            <li class="name">
+              Średnie zarobki brutto kobiet w tej grupie
             </li>
-            <li class="li-value">
+            <li class="name li-value">
               {{group.salaryWomen}} zł/miesiąc
             </li>
           </ul>
         </ng-template>
       </mat-expansion-panel>
+    </div>
+    <br />
+    <div id="desc">
+      <p>
+        Powyższe dane stosują oznaczenie grup zawodowych zgodnie z
+        <a href="http://www.klasyfikacje.gofin.pl/kzis/6,0.html">
+          Klasyfikacją Zawodów i Specjalności na potrzeby rynku pracy.
+        </a>
+        Odpowiednio grupy wielke (1. cyfrowe), duże (2. cyfrowe) i średnie (3. cyfrowe) zawierają się kolejno. <br/>
+        Zawarte informacje pochodzą z października 2018r. i zostały
+        <a href="https://stat.gov.pl/obszary-tematyczne/rynek-pracy/pracujacy-zatrudnieni-wynagrodzenia-koszty-pracy/
+        struktura-wynagrodzen-wedlug-zawodow-w-pazdzierniku-2018-roku,4,9.html">
+          udostępnione przez Główny Urząd Statystyczny
+        </a>
+        (tabela 4 i 5).
+      </p>
+      <p>
+        Tabele przedstawiają następujące informacje odpowiedno dla danych grup:
+      </p>
+      <ul>
+        <li>
+          średnie zarobki brutto (osobno dla wszystkich pracowników, kobiet oraz mężczyzn)
+        </li>
+        <li>
+          informacje na temat ilości osób zatrudnionych w grupie
+        </li>
+        <li>
+          stosunek ilości osób zatrudnionych względem wszystkich osób pracujących w Polsce
+        </li>
+        <li>
+          stosunek ilości osób zatrudnionych w grupie względem grupy 1. cyfrowej
+        </li>
+      </ul>
+      <p>
+        Procentowe zatrudnienie pochodzi z obliczeń własnych i jest zaokrąglone do pierwszego miejsca po przecinku:
+      </p>
+      <ul>
+        <li>
+          Procentowe zatrudnienie względem sumy zatrudnionych (zatrudnienie ogółu * 100 / ilość osob zatrudnionych w Polsce)
+        </li>
+        <li>
+          Procentowe zatrudninie względem gupy wielkiej (zatrudnienie ogółu * 100 / ilość osob zatrudnionych w odpowiadajacej wielkiej grupie)
+        </li>
+      </ul>
     </div>
   </div>
   <div class="lds-ring" *ngIf="loading" ><div></div><div></div><div></div><div></div></div>
