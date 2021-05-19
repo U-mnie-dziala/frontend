@@ -2,13 +2,13 @@
 <!-- Toolbar -->
 <div [className]="toolbarVariable">
   <a routerLink="/" routerLinkActive="active">
-    <img alt="Logo" src="favicon.ico" ng-href="#" />
+    <img alt="Logo" src="assets/logo.ico" ng-href="#" />
   </a>
   <a routerLink="/" *ngIf="!toolbarResponsive">
     <h1>Tiara Przydziału</h1>
   </a>
   <a class="logoResponsive" *ngIf="toolbarResponsive" routerLink="/">
-    <img alt="Logo" src="favicon.ico" ng-href="#" /> <h1>Tiara Przydziału</h1>
+    <img alt="Logo" src="assets/logo.ico" ng-href="#" /> <h1>Tiara Przydziału</h1>
   </a>
   <div class="placeholder"> </div>
   <span class="search" routerLink="/wyszukaj/grupy">
